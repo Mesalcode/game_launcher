@@ -11,12 +11,15 @@ In this paragraph, there will be instructions on how to setup the backend and th
 #### 1. Clone or download repository
 To begin with, you will need to clone/download the repository to your computer.  
 
-**There are to ways to do so:**
+**There are to ways to do so**
 
 Way 1:  
 If you already have installed git to your path you can simple use the following command to clone the repo.  
     ```git clone https://github.com/Mesalcode/game_launcher.git```
 
+Way 2:  
+The other way is to download the repository in form of a zip file.  
+To do so click on the **,,Clone or download"** button you can see over the files of this repository.
 
 ### Implementation
 * **Frontend/User interface:** Native [Processing](https://processing.org/) and using its [processing-sound](https://github.com/processing/processing-sound) library
