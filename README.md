@@ -1,7 +1,7 @@
 # Game launcher - WP2, 8th grade
 ### General
-* able to launch self programmed online/offline games and simulations
-* can handle third party programs (addable by user and preinstalled)
+* able to launch **self programmed online/offline games and simulations**
+* can handle **third party programs (games)** (addable by user and preinstalled)
 ### Context
 Graded half years **school project for WP2 informatics class** (8th Grade, started March 2020)
 ### Updates
