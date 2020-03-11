@@ -14,7 +14,7 @@ To begin with, you will need to clone/download the repository to your computer.
 **There are to ways to do so:**
 
 Way 1:  
-If you already have installed git to your path you can simple use the following command to clone the repo.
+If you already have installed git to your path you can simple use the following command to clone the repo.  
     ```git clone https://github.com/Mesalcode/game_launcher.git```
 
 
