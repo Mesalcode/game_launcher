@@ -10,3 +10,4 @@ Graded half years school project for WP2 informatics class (8th Grade, started M
 #### NodeJS modules
 * [Express](https://www.npmjs.com/package/express)
 * [MongoDB](https://www.npmjs.com/package/mongodb)
+* [Readline](https://www.npmjs.com/package/readline)
