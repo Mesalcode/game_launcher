@@ -7,7 +7,7 @@ Graded half years **school project for WP2 informatics class** (8th Grade, start
 ### Updates
 This project will not be maintained after the end of the projects time span. This means, there will be **no** feature updates, content updates or bug fixes after the deadline. 
 ### Setup
-In this paragraph, there will be instructions on how to setup the backend and the game launcher itself on your computer, and how to change configurations.
+In this paragraph, there will be instructions on how to **setup the backend and the game launcher** itself on your computer, and how to change configurations.
 #### 1. Clone or download repository
 To begin with, you will need to clone/download the repository to your computer.  
 
