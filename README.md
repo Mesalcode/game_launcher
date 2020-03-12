@@ -3,9 +3,12 @@
 * able to launch **self programmed online/offline games and simulations**
 * can handle **third party programs (games)** (addable by user and preinstalled)
 ### Application list
+#### Games
 * Atari Tennis (retro game, [see wikipedia article](https://en.wikipedia.org/wiki/Pong)) 
 * Pac-Man (retro game, [see wikipedia article](https://en.wikipedia.org/wiki/Pac-Man))
 * Running Game (endless runner game inspired by subway surfers, [see wikipedia article](https://en.wikipedia.org/wiki/Subway_Surfers))
+#### Softwares
+* FT2 (drawing tool)
 ### Context
 Graded half years **school project for WP2 informatics class** (8th Grade, started March 2020)
 ### Updates
