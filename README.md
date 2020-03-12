@@ -21,6 +21,7 @@ Way 2:
 The other way is to download the repository in form of a zip file.  
 To do so click on the **,,Clone or download"** button you can see over the files of this repository.
 ![alt text](https://raw.githubusercontent.com/Mesalcode/game_launcher/master/readme_clone_or_download.PNG "Logo Title Text 1")
+Then, you need to click on **Download ZIP**, which will download the whole repository in form of a ZIP-file.
 ### Implementation
 * **Frontend/User interface:** Native [Processing](https://processing.org/) and using its [processing-sound](https://github.com/processing/processing-sound) library
 * **Backend:** Portable [NodeJS](https://nodejs.org/) server interacting with [MongoDB](https://www.mongodb.com/) database, receiving fetches using [Express](https://expressjs.com/) - MEN-Stack ([MEAN](https://en.wikipedia.org/wiki/MEAN_(solution_stack)) without Angular)
