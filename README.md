@@ -5,6 +5,7 @@
 ### Application list
 * Atari Tennis (retro game, [see wikipedia article](https://en.wikipedia.org/wiki/Pong)) 
 * Pac-Man (retro game, [see wikipedia article](https://en.wikipedia.org/wiki/Pac-Man))
+* Running Game (endless runner game inspired by subway surfers, [see wikipedia article](https://en.wikipedia.org/wiki/Subway_Surfers))
 ### Context
 Graded half years **school project for WP2 informatics class** (8th Grade, started March 2020)
 ### Updates
