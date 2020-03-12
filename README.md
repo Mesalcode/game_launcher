@@ -25,6 +25,10 @@ To do so click on the **,,Clone or download"** button you can see over the files
 
 #### 2. Install NodeJS
 For the installation of NodeJS please refer to [the official NodeJS download page](https://nodejs.org/de/download/), which will list several ways of installing NodeJS on your computer.
+#### 3. Install and setup your MongoDB database
+Instructions on how to setup your MongoDB database can be found [official MongoDB manual](https://docs.mongodb.com/manual/installation/).
+Make sure to setup password security aswell.
+
 ### Implementation
 * **Frontend/User interface:** Native [Processing](https://processing.org/) and using its [processing-sound](https://github.com/processing/processing-sound) library
 * **Backend:** Portable [NodeJS](https://nodejs.org/) server interacting with [MongoDB](https://www.mongodb.com/) database, receiving fetches using [Express](https://expressjs.com/) - MEN-Stack ([MEAN](https://en.wikipedia.org/wiki/MEAN_(solution_stack)) without Angular)
