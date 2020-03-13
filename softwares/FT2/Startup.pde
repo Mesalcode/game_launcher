@@ -12,7 +12,7 @@ void setup(){
     Tool currentTool =hotbarTools[selectedTool]; 
         currentTool.activate();
        cursor(currentTool.getCursor());
-       save("Zwischenablage/save" + saveStatus + ".png");
+       save("cache/save" + saveStatus + ".png");
        saveStatus++;
       
      

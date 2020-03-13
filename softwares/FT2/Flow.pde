@@ -1,7 +1,7 @@
 void undo(){
   
   if (saveStatus>=delCount){
-  File toDelete = new File(sketchPath("Zwischenablage/save"+(saveStatus)+".png"));
+  File toDelete = new File(sketchPath("cache/save"+(saveStatus)+".png"));
   if (toDelete.exists())
   toDelete.delete();
   if (!(saveStatus==delCount)){
@@ -10,7 +10,7 @@ void undo(){
   else 
   saveStatus=0;
   enableOnClick = true;
-  image(loadImage("Zwischenablage/save"+(saveStatus)+".png"),0,0);
+  image(loadImage("cache/save"+(saveStatus)+".png"),0,0);
   
   }else {
    

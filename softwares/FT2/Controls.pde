@@ -27,7 +27,7 @@ void mouseMoved(){
    if (drawFocused){
   try {
    if (enableOnClick)
-  image(loadImage("Zwischenablage/save"+saveStatus+".png"),0,0);enableOnClick=false;
+  image(loadImage("cache/save"+saveStatus+".png"),0,0);enableOnClick=false;
   }catch (Exception e){
   }
    }
@@ -84,7 +84,7 @@ void keyPressed(){
        String userName = showInputDialog(null,"Wie möchten sie ihr Bild benennen?");
    if (userName!=null){
    try {
-   save("Meine Bilder/"+  userName + ".png");
+   save("my_images/"+  userName + ".png");
      showMessageDialog(null,"Ihr Bild wurde unter ,," + userName + ".png\" gespeichert." );
    }catch (Exception e2){
        showMessageDialog(null,"Ungültiger Dateiname!","Fehler",ERROR_MESSAGE );
