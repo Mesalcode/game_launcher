@@ -1,0 +1,1 @@
+GET http://localhost:300/registerreq?WuhanSchack?wuhaslol?English-UK?MALE?30D1M2006Y?13D03M2020Y?alexandermertens06@gmail.com?53a0be1744d0927dbfe6da34730802df54ad9e875aac8110db698be4bcb38d06?Heinz%20Name%20ist%20er?53a0be1744d0927dbfe6da34730802df54ad9e875aac8110db698be4bcb38d06?true

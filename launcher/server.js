@@ -245,14 +245,23 @@ app.get(registerSite, async (req, res) =>{
     log("Space-applied parameters: " + filtered_params, requestID)
     filtered_params = filtered_params.slice(1,filtered_params.length)
     log("Parameters: " + filtered_params, requestID)
+   /* log(filtered_params.length==expectedRegisterParamCount)
+    log(filtered_params[0].length>=nameMinLength&&filtered_params[0].length<=nameMaxLength)
+    log(filtered_params[1].length>=ignMinLength&&filtered_params[1].length<=ignMaxLength)
+    log(validLanguages.includes(filtered_params[2]))
+    log(validGenders.includes(filtered_params[3])&&filtered_params[7].length==encryptionLength)
+    log(filtered_params[8].length>=sqMinLength&&filtered_params[8].length<=sqMaxLength)
+    log(filtered_params[9].length==encryptionLength)
+    log((filtered_params[10]=='true'||filtered_params[10]=='false')) */
+
     if (filtered_params.length==expectedRegisterParamCount){
         if (filtered_params[0].length>=nameMinLength&&filtered_params[0].length<=nameMaxLength&&filtered_params[1].length>=ignMinLength
             &&filtered_params[1].length<=ignMaxLength&&validLanguages.includes(filtered_params[2])
             &&validGenders.includes(filtered_params[3])&&filtered_params[7].length==encryptionLength
                 &&filtered_params[8].length>=sqMinLength&&filtered_params[8].length<=sqMaxLength
-                &&filtered_params[9].length==encryptionLength&&(filtered_params[10]=='true'||filtered_params[10]=='false'
+                &&filtered_params[9].length==encryptionLength&&(filtered_params[10]=='true'||filtered_params[10]=='false')
                 &&await isUsernameAvailable(filtered_params[1])&&await isMailAvailable(filtered_params[6]))
-            ){
+            {
         insertUser(
             {
                 name:filtered_params[0],
@@ -425,9 +434,9 @@ function getLogFile(){
 }
 function log(toLog, id){
     console.log("["+String(id)+"] "+toLog)
-    fs.appendFile(logFile, "["+String(id)+"] "+toLog, (err) => {
+    /*fs.appendFile(logFile, "["+String(id)+"] "+toLog, (err) => {
         if (err) throw err;
-    })
+    })*/
 }
 function pushBug(sender, text){
     log("bug pushed '" + text + "'","Mainthread")
