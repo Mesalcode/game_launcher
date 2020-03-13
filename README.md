@@ -18,7 +18,7 @@ In this paragraph, there will be instructions on how to **setup the backend and 
 #### 1. Clone or download repository
 To begin with, you will need to clone/download the repository to your computer.  
 
-**There are to ways to do so**
+**There are two ways to do so**
 
 Way 1:  
 If you already have installed git to your path you can simple use the following command to clone the repo.  
