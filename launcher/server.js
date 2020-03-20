@@ -10,10 +10,9 @@ const registerSite = "/registerreq"
 const restrictmentsSite = "/arreq"
 const bugSite = "/submitbug"
 const staffLoginSite = "/staffloginreq"
-const expectedLoginParamCount = 4
+const expectedLoginParamCount = 3
 const expectedRegisterParamCount = 11
 const expectedStaffLoginParamCount = 4
-let newestVersion = 1.0
 let logFile = getLogFile()
 const iplocation = require('iplocation').default
 const requestIDLength = 10
@@ -74,10 +73,28 @@ async function loadReqs(){
     sqMinLength = parseInt(reqs[4])
     sqMaxLength = parseInt(reqs[5])
     encryptionLength = parseInt(reqs[6])
+    let vl = []
+    let beginDex
+    for (let i = 7; i < reqs.length;i++){
+        if (reqs[i].includes("-"))
+            vl.push(reqs[i])
+        else{
+            beginDex = i
+            break;
+        }
+        
+            
+    }
+    const vg = reqs.slice(beginDex)
+    log(beginDex+1, "DATa")
+    log(reqs.length+3, "DATA")
+    log(reqs, "DATA")
+    validLanguages = vl
+    validGenders = vg
 }
 loadReqs()
-validLanguages = ["German-DE","English-UK","English-US","Korean-SK"]
-validGenders = ["MALE","FEMALE","DIVERSE"]
+//validLanguages = ["German-DE","English-UK","English-US","Korean-SK"]
+//validGenders = ["MALE","FEMALE","DIVERSE"]
 function insertUser(toInsert){
 MongoClient.connect(url, function(err, db) {
     if (err) throw err;
@@ -179,7 +196,7 @@ const getIpAddressFromRequest = (request) => {
     }
     return ipAddr;
   };
-let updateLink = "http://www.downloadseite.de/update_"+String(newestVersion)+".apk"
+
 staff_http = http.createServer(function (req, res) {
     const path = req.url.substring(req.url.substring(8).indexOf("/")+1)
     if (path=="/staff_console"){
@@ -215,7 +232,8 @@ app.get(restrictmentsSite, async (req, res) =>{
     +"#"+String(ignMinLength)+"#"+String(ignMaxLength)+"#"
     +String(sqMinLength)+"#"+String(sqMaxLength)+"#"
     +String(encryptionLength)+"#["+String(validLanguages)+"]#["+String(validGenders)+"]"
-    res.send(concatedData)
+    
+    res.json(concatedData)
     log("send concated restrictment data to client [" + concatedData + "]")
 })
 app.get(registerSite, async (req, res) =>{
@@ -386,22 +404,11 @@ app.get(loginSite, (req, res) =>{
     filtered_params = filtered_params.slice(1,filtered_params.length)
     log("Parameters: " + filtered_params, requestID)
     if (filtered_params.length==expectedLoginParamCount){
-        if (newestVersion>filtered_params[3]){
-            log("Outdated version ["+filtered_params[3]+"<"+newestVersion+"], sending link to update", requestID)
-            res.send("200?"+updateLink)
-            log("Send code 200 ["+"200?"+updateLink+"]", requestID)
-        }else if (newestVersion<filtered_params[3]){
-            log("Version newer than latest release ["+filtered_params[3]+">"+newestVersion+"], sending link to downgrade", requestID)
-            res.send("201?"+updateLink)
-            log("Send code 201 ["+"201?"+updateLink+"]", requestID)
-        }else {
-            log("Versions equal to each other ["+filtered_params[3]+"="+newestVersion+"]", requestID)
-            allowedIps.push(getIpAddressFromRequest(req))
-            res.send("300")
-            log("Send code 300", requestID)
-        }
+        
+         allowedIps.push(getIpAddressFromRequest(req))
+          
     }else {
-        res.send("100", requestID)
+        res.send("100")
     }
     osutils.cpuUsage(function (v){
         log("CPU usage: " + String(v*100) +"%","Performance")
