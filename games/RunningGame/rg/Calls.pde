@@ -1,6 +1,5 @@
 interface Call{
  void exec();
- 
 }
 class DeadCall implements Call{
   @Override

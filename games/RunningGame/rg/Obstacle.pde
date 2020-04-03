@@ -9,10 +9,10 @@ class Obstacle{
   float rollDelaySeconds;
   float rollStart;
   boolean movesSideways;
-  Obstacle(int startX,int startY,int startZ,float scale, PShape obstacleShape, boolean doesRotate, float rotation0, int rotation1, int rotation2, int rotation3, float rollDelaySeconds, float rollStart, boolean movesSideways){
-    posX = startX;
-    posY = startY;
-    posZ = startZ;
+  Obstacle(Position startPosition,float scale, PShape obstacleShape, boolean doesRotate, float rotation0, int rotation1, int rotation2, int rotation3, float rollDelaySeconds, float rollStart, boolean movesSideways){
+    posX=startPosition.x;
+    posY=startPosition.y;
+    posZ=startPosition.z;
     this.scale = scale;
     this.obstacleShape = obstacleShape;
     rotates = doesRotate;

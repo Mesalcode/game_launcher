@@ -1,5 +1,5 @@
 class Player{
- int posX,posY,posZ;
+ Position position;
  float velocityY = 0;
  float gravity;
  int groundY;
@@ -12,13 +12,11 @@ class Player{
  int slideCount = 0;
  int[] movementFieldX;
  int offsetY;
- Player(int startX,int startY,int startZ,float scale, PShape playerShape,PShape jumpShape,PShape slideShape,float gravity,int possibleSpeedX, float jumpHeightY, int slideDuration, int[] movementFieldX, int offsetY){
-   posX=startX;
-   posY=startY;
-   posZ=startZ;
+ /*Player(Position startPosition,float scale, PShape playerShape,PShape jumpShape,PShape slideShape,float gravity,int possibleSpeedX, float jumpHeightY, int slideDuration, int[] movementFieldX, int offsetY){
+   position=startPosition;
    shape=playerShape;
    this.scale = scale;
-   groundY = startY;
+   groundY = startPosition.y; //TODO: Change to global variable
    this.gravity = gravity;
    possSpeedX = possibleSpeedX;
    jumpHeight = jumpHeightY;
@@ -27,13 +25,27 @@ class Player{
    slideLength = slideDuration;
    this.movementFieldX = movementFieldX;
    this.offsetY = offsetY;
+ }*/
+ Player(PlayerInfoContainer information){
+   position = information.startPosition;
+   shape = information.runShape;
+   scale = information.scale;
+   groundY = information.startPosition.y; //TODO: Change to global variable
+   gravity = information.gravity;
+   possSpeedX = information.possibleSpeedX;
+   jumpHeight = information.jumpHeightY;
+   jumpShape = information.jumpShape;
+   slideShape = information.slideShape;
+   slideLength = information.slideDuration;
+   movementFieldX = information.movementFieldX;
+   offsetY = information.offsetY;
  }
  void animate(){
     
-    translate(posX,posY,posZ); //x y z
+    translate(position.x,position.y,position.z); //x y z
     scale(scale);
     if (!sliding){
-    if (posY>=groundY-10)
+    if (position.y>=groundY-10)
     shape(shape,0,offsetY);
     else{
      shape(jumpShape,0,offsetY); 
@@ -57,7 +69,7 @@ class Player{
      /* println("tiefe-objekt:"+String.valueOf(ob.obstacleShape.getDepth()));
       println("vorne-objekt:"+String.valueOf(ob.posZ+ob.obstacleShape.getDepth()/2));
       println("hinten-objekt:"+String.valueOf(ob.posZ-ob.obstacleShape.getDepth()/2)); */
-      if (ob.posZ+(ob.obstacleShape.getDepth()/2)*20>=posZ&&ob.posZ-(ob.obstacleShape.getDepth()/2)*20<=posZ){
+      if (ob.posZ+(ob.obstacleShape.getDepth()/2)*20>=position.z&&ob.posZ-(ob.obstacleShape.getDepth()/2)*20<=position.z){
         println("collision"); 
         return true;
       }
@@ -72,14 +84,14 @@ class Player{
    return returnVal;
  }
  void calculateGravity(){
-   boolean grounded = posY>=groundY;
+   boolean grounded = position.y>=groundY;
   
    if (!grounded){
-    posY+=velocityY;
+    position.y+=velocityY;
     velocityY+=gravity;
    }else{
     if (velocityY<0)
-      posY+=velocityY;
+      position.y+=velocityY;
     else
       velocityY=0;
     
@@ -95,12 +107,12 @@ class Player{
    }
  }
  void goLeft(){
-   if (posX-possSpeedX>=movementFieldX[0])
-   posX-=possSpeedX;
+   if (position.x-possSpeedX>=movementFieldX[0])
+     position.x-=possSpeedX;
  }
  void goRight(){
-  if (posX+possSpeedX<=movementFieldX[1])
-  posX+=possSpeedX;
+  if (position.x+possSpeedX<=movementFieldX[1])
+    position.x+=possSpeedX;
  }
  void slide(){
    if (velocityY==0&&!sliding){
