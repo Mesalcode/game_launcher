@@ -45,12 +45,15 @@ void shop(){
   rect(displayWidth/12+30,displayHeight/7+sqSize,sqSize, sqSize);
   shopMagic.resize(sqSize, sqSize);
   image(shopMagic,displayWidth/12+30,displayHeight/7+sqSize);
+  text(String.valueOf(magicPrice)+"$",displayWidth/12+30+sqSize/2,displayHeight/7+sqSize+sqSize/2);
   rect(displayWidth/12+30+sqSize,displayHeight/7+sqSize,sqSize, sqSize);
   shopWind.resize(sqSize, sqSize);
   image(shopWind,displayWidth/12+30+sqSize,displayHeight/7+sqSize);
+  text(String.valueOf(windPrice)+"$",displayWidth/12+30+sqSize/2+sqSize,displayHeight/7+sqSize+sqSize/2);
   rect(displayWidth/12+30+sqSize*2,displayHeight/7+sqSize,sqSize, sqSize);
   shopWolf.resize(sqSize, sqSize);
   image(shopWolf,displayWidth/12+30+sqSize*2,displayHeight/7+sqSize);
+  text(String.valueOf(wolfPrice)+"$",displayWidth/12+30+sqSize/2+sqSize*2,displayHeight/7+sqSize+sqSize/2);
   rect(displayWidth/12+displayWidth-displayWidth/12*2-30-500,displayHeight/7+sqSize,-sqSize, sqSize);
   shopCat.resize(sqSize, sqSize);
   image(shopCat,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30,displayHeight/7+sqSize);
