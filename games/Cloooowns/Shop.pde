@@ -36,12 +36,15 @@ void shop(){
   rect(displayWidth/12+displayWidth-displayWidth/12*2-30,displayHeight/7,-sqSize, sqSize);
   shopBirdA.resize(sqSize, sqSize);
   image(shopBirdA,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30,displayHeight/7);
+  text(String.valueOf(birdAPrice)+"$",displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30+sqSize/2,displayHeight/7+sqSize/2);
   rect(displayWidth/12+displayWidth-displayWidth/12*2-sqSize-30,displayHeight/7,-sqSize, sqSize);
   shopBirdB.resize(sqSize, sqSize);
   image(shopBirdB,displayWidth/12+displayWidth-displayWidth/12*2-sqSize-30,displayHeight/7);
   rect(displayWidth/12+displayWidth-displayWidth/12*2-sqSize*2-30,displayHeight/7,-sqSize, sqSize);
+  text(String.valueOf(birdBPrice)+"$",displayWidth/12+displayWidth-displayWidth/12*2-sqSize-30+sqSize/2,displayHeight/7+sqSize/2);
   shopBirdC.resize(sqSize, sqSize);
   image(shopBirdC,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*2-30,displayHeight/7);
+  text(String.valueOf(birdCPrice)+"$",displayWidth/12+displayWidth-displayWidth/12*2-sqSize*2-30+sqSize/2,displayHeight/7+sqSize/2);
   rect(displayWidth/12+30,displayHeight/7+sqSize,sqSize, sqSize);
   shopMagic.resize(sqSize, sqSize);
   image(shopMagic,displayWidth/12+30,displayHeight/7+sqSize);
@@ -54,19 +57,22 @@ void shop(){
   shopWolf.resize(sqSize, sqSize);
   image(shopWolf,displayWidth/12+30+sqSize*2,displayHeight/7+sqSize);
   text(String.valueOf(wolfPrice)+"$",displayWidth/12+30+sqSize/2+sqSize*2,displayHeight/7+sqSize+sqSize/2);
-  rect(displayWidth/12+displayWidth-displayWidth/12*2-30-500,displayHeight/7+sqSize,-sqSize, sqSize);
+  rect(displayWidth/12+displayWidth-displayWidth/12*2-30-sqSize*2,displayHeight/7+sqSize,-sqSize, sqSize);
   shopCat.resize(sqSize, sqSize);
   image(shopCat,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30,displayHeight/7+sqSize);
+  text(String.valueOf(catPrice)+"$",displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30+sqSize/2,displayHeight/7+sqSize+sqSize/2);
   rect(displayWidth/12+displayWidth-displayWidth/12*2-30-sqSize,displayHeight/7+sqSize,-sqSize, sqSize);
   shopFire.resize(sqSize, sqSize);
   image(shopFire,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30+sqSize,displayHeight/7+sqSize);
+  text(String.valueOf(firePrice)+"$",displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30+sqSize+sqSize/2,displayHeight/7+sqSize+sqSize/2);
   rect(displayWidth/12+displayWidth-displayWidth/12*2-30,displayHeight/7+sqSize,-sqSize, sqSize);
   shopTornado.resize(sqSize, sqSize);
-  image(shopTornado,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30+500,displayHeight/7+sqSize);
-  rect(displayWidth/12+displayWidth-displayWidth/12*2-30-500,displayHeight/7+sqSize*2,-sqSize, sqSize);
+  image(shopTornado,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30+sqSize*2,displayHeight/7+sqSize);
+  text(String.valueOf(tornadoPrice)+"$",displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30+sqSize*2+sqSize/2,displayHeight/7+sqSize+sqSize/2);
+  rect(displayWidth/12+displayWidth-displayWidth/12*2-30-sqSize*2,displayHeight/7+sqSize*2,-sqSize, sqSize);
   shopScissors.resize(sqSize, sqSize);
   image(shopScissors,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30,displayHeight/7+sqSize*2);
-  
+  text(String.valueOf(scissorsPrice)+"$",displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30+sqSize/2,displayHeight/7+sqSize+sqSize/2+sqSize);
   textAlign(LEFT);
 }
 void handleShopPress(int mX,int mY){
