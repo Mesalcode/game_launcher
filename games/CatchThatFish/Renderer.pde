@@ -2,7 +2,7 @@ class Renderer{
   void execute(){
     
   }
-  void adjustingFill(int[] fillColor){
+  private void adjustingFill(int[] fillColor){
    switch (fillColor.length){
      case 1:
        fill(fillColor[0]);

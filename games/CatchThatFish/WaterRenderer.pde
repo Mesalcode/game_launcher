@@ -9,7 +9,7 @@ class WaterRenderer extends Renderer{
    this.waterColor = waterColor;
  }
  void execute(){
-   adjustingFill(waterColor);
+   super.adjustingFill(waterColor);
    render();
  }
  private void render(){
