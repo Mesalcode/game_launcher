@@ -1,5 +1,10 @@
 int sqSize;
 int blackHolePrice = 100;
+int ghostPrice = 50;
+int ghostsPrice = 200;
+int magicPrice = 75;
+int windPrice = 25;
+int wolfPrice = 50;
 void shop(){
   sqSize = (int)(displayWidth/7.68);
   fill(255,255,255,10);
@@ -48,13 +53,32 @@ void shop(){
   textAlign(LEFT);
 }
 void handleShopPress(int mX,int mY){
-  if (inChunk(mX,mY,displayWidth/12+30,displayHeight/7)){
-    if (blackHolePrice>=coins){
-      blackHole.exec();
+  if (inChunk(mX,mY,displayWidth/12+30,displayHeight/7))
+    applyPurchase(blackHolePrice,blackHole);
+  else if (inChunk(mX,mY,displayWidth/12+sqSize+30,displayHeight/7))
+    applyPurchase(ghostPrice,ghostKidnapping);
+  else if (inChunk(mX,mY,displayWidth/12+sqSize*2+30,displayHeight/7)){
+    if (ghostsPrice<=coins){
+      coins -= ghostsPrice;
       shopMode = false;
-    }
+      for (int i = 0; i < (int)random(6)+1;i++){
+        ghostKidnapping.exec();
+      }
   }
+  }else if (inChunk(mX,mY,displayWidth/12+30,displayHeight/7+sqSize))
+    applyPurchase(magicPrice,magic);
+   else if (inChunk(mX,mY,displayWidth/12+30+sqSize,displayHeight/7+sqSize))
+    applyPurchase(windPrice,wind);
+   else if (inChunk(mX,mY,displayWidth/12+30+sqSize*2,displayHeight/7+sqSize))
+     applyPurchase(wolfPrice,wolfChase);
 }
 boolean inChunk(int mX,int mY,int tX, int tY){
   return mX>tX&mX<tX+sqSize&mY>tY&mY<tY+sqSize;
+}
+void applyPurchase(int price, Ability toExec){
+  if (price<=coins){
+      toExec.exec();
+      coins-=price;
+      shopMode = false;
+    }
 }
