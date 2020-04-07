@@ -90,6 +90,7 @@ void init(){
  frameRate(30);
  csdc = 0;
  points = 0;
+ coins = 1000;
  lives = 50;
  cashMultiplicator = 1;
  musicVolume = 0.5;

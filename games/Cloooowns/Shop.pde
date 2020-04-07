@@ -100,7 +100,7 @@ void handleShopPress(int mX,int mY){
      applyPurchase(birdCPrice,summonBirdC);
    else if (inChunk(mX,mY,displayWidth/12+displayWidth-displayWidth/12*2-30-sqSize*3,displayHeight/7))
      applyPurchase(birdAPrice,summonBird);
-   else if (inChunk(mX,mY,displayWidth/12+displayWidth-displayWidth/12*2-30-sqSize,displayHeight/7+sqSize))
+   else if (inChunk(mX,mY,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30,displayHeight/7+sqSize))
      applyPurchase(catPrice, summonCat);
    else if (inChunk(mX,mY,displayWidth/12+displayWidth-displayWidth/12*2-30-sqSize*2,displayHeight/7+sqSize))
      applyPurchase(firePrice,new CursorFlame());
