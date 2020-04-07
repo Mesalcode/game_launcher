@@ -19,6 +19,8 @@ void draw(){
  background(255);
  waterRenderer.execute(); 
  camera.arrange();
+ 
+ //---Tests---
  if (keyPressed)
    testMoveAroundFreelyWithArrowKeys(keyCode); 
 }

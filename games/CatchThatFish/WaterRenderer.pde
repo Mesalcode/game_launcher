@@ -10,7 +10,9 @@ class WaterRenderer extends Renderer{
  }
  void execute(){
    adjustingFill(waterColor);
+   render();
+ }
+ private void render(){
    rect(originX,originY,_width-originX,depth-originY);
  }
-  
 }
