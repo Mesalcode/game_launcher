@@ -7,7 +7,7 @@ void setup(){
  fullScreen(P3D);
  initializeGlobalVariables();
  initializeRenderers();
- camera = new Camera(0,0);
+ camera = new Camera(displayWidth/2,displayHeight/2);
 }
 void initializeGlobalVariables(){
  gWaterColor = new int[]{0,0,125,40};
@@ -19,7 +19,6 @@ void draw(){
  background(255);
  waterRenderer.execute(); 
  camera.arrange();
-}
-void keyPressed(){
- testMoveAroundFreelyWithArrowKeys(keyCode); 
+ if (keyPressed)
+   testMoveAroundFreelyWithArrowKeys(keyCode); 
 }
