@@ -76,6 +76,7 @@ int csdc;
 int points;
 int coins;
 int lives;
+int startClowns = 3;
 int cashMultiplicator;
 float musicVolume;
 Cursor activeCursor;
@@ -184,7 +185,7 @@ void init(){
 
  events = evsec;
  currentEvent = null;
- for (int i = 0; i < 1; i++)
+ for (int i = 0; i < startClowns; i++)
    clowns.add(new WeakClown(weakclownImage,(int)(random(displayWidth/2)+displayWidth/4),displayHeight-displayHeight/3-displayHeight/8,(int)frameRate));
 }
 void draw(){
