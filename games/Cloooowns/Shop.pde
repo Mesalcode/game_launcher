@@ -104,7 +104,7 @@ void handleShopPress(int mX,int mY){
      applyPurchase(catPrice, summonCat);
    else if (inChunk(mX,mY,displayWidth/12+displayWidth-displayWidth/12*2-30-sqSize*2,displayHeight/7+sqSize))
      applyPurchase(firePrice,new CursorFlame());
-   else if (inChunk(mX,mY,displayWidth/12+displayWidth-displayWidth/12*2-30-sqSize*3,displayHeight/7+sqSize))
+   else if (inChunk(mX,mY,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30+sqSize*2,displayHeight/7+sqSize))
      applyPurchase(tornadoPrice,new CursorTornado());
    else if (inChunk(mX,mY,displayWidth/12+displayWidth-displayWidth/12*2-sqSize*3-30,displayHeight/7+sqSize*2))
      applyPurchase(scissorsPrice,new CursorScissors());

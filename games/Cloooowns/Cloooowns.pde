@@ -90,7 +90,7 @@ void init(){
  frameRate(30);
  csdc = 0;
  points = 0;
- coins = 1000;
+ coins = 100000;
  lives = 50;
  cashMultiplicator = 1;
  musicVolume = 0.5;
@@ -184,7 +184,8 @@ void init(){
 
  events = evsec;
  currentEvent = null;
- clowns.add(new WeakClown(weakclownImage,(int)(random(displayWidth/2)+displayWidth/4),displayHeight-displayHeight/3-displayHeight/8,(int)frameRate));
+ for (int i = 0; i < 10; i++)
+   clowns.add(new WeakClown(weakclownImage,(int)(random(displayWidth/2)+displayWidth/4),displayHeight-displayHeight/3-displayHeight/8,(int)frameRate));
 }
 void draw(){
  if (!shopMode&!menuMode){
