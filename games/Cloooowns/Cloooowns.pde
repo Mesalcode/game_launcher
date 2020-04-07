@@ -194,7 +194,7 @@ void draw(){
   else{
     spawnClown();
     csdc = 0; 
-    if (random(100)<=40)
+    if (random(80)<=40)
       startEvent();
   }
  }else {
