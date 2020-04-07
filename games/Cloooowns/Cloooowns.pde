@@ -306,6 +306,8 @@ void mouseMoved(){
 void mousePressed(){
  if (menuMode)
    handleMenuPress(mouseX,mouseY);
+ else if (shopMode)
+   handleShopPress(mouseX,mouseY);
 }
 void keyPressed(){
  
