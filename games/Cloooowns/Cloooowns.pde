@@ -48,6 +48,7 @@ PImage shopMagic;
 PImage shopTornado;
 PImage shopWind;
 PImage shopWolf;
+PImage shopScissors;
 float bloonSpeed = -0.01;
 ArrayList<Clown> clowns;
 ArrayList<Balloon> bloons;
@@ -69,6 +70,7 @@ boolean menuMode;
 Upgrade summonBird;
 Upgrade summonBirdB;
 Upgrade summonBirdC;
+Upgrade summonCat;
 int clownSpawnDelay;
 int csdc;
 int points;
@@ -144,6 +146,7 @@ void init(){
  shopTornado = loadImage("shop_tornado.png");
  shopWind = loadImage("shop_wind.png");
  shopWolf = loadImage("shop_wolf.png");
+ shopScissors = loadImage("shop_scissors.png");
  bg.resize(displayWidth,displayHeight);
  clowns = new ArrayList<Clown>();
  bloons = new ArrayList<Balloon>();
@@ -165,6 +168,7 @@ void init(){
  summonBird = new BirdSummoner();
  summonBirdB = new BirdSummonerB();
  summonBirdC = new BirdSummonerC();
+ summonCat = new CatSummoner();
  Event[] evsec = {
  new DoubleCash(30*30),new DoubleCash(30*60),
  new DoubleCash(30*120),new GhostAttack(30*20),
@@ -310,7 +314,6 @@ void mousePressed(){
    handleShopPress(mouseX,mouseY);
 }
 void keyPressed(){
- 
  switch (keyCode){
   case TAB:
     shopMode = !shopMode;
@@ -319,31 +322,7 @@ void keyPressed(){
     key = 0;
     menuMode = !menuMode;
     break;
- }
- 
- if (key=='m')
-   magic.exec();
- if (key=='w')
-   wind.exec();
- if (key=='h')
-   wolfChase.exec();
- if (key=='g')
-   ghostKidnapping.exec();
- if(key=='ä'){
-   startEvent();
- }
- if (key=='k')
-   cats.add(new Cat());
-  
-  if (key=='+')
-    summonBird.exec();
-   if (key=='-')
-    summonBirdB.exec(); 
-   if (key=='#')
-    summonBirdC.exec(); 
-   if (key=='c')
-     spawnClown();
-   
+ }   
 }
 void startEvent(){
   Event e = events[(int)random(events.length-1)];

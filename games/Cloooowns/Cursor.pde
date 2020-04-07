@@ -42,7 +42,11 @@ class CursorFlame implements Cursor{
  @Override
  void init(){
    noCursor();
+   try {
    cursor(flameImage, mouseX, mouseY);
+   }catch (IndexOutOfBoundsException ioobe){
+   cursor(HAND);
+   }
  }
  @Override
  void act(int x, int y){

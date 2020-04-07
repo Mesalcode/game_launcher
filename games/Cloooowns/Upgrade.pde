@@ -19,3 +19,10 @@ class BirdSummonerC implements Upgrade{
    birds.add(new Bird(100,8, birdLeftC, birdRightC,400,1000));
  }
 }
+class CatSummoner implements Upgrade{
+ @Override
+ void exec(){
+  cats.add(new Cat()); 
+ }
+  
+}
