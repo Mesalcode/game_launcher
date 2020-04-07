@@ -59,7 +59,11 @@ class CursorTornado implements Cursor{
  @Override
  void init(){
    noCursor();
+   try {
    cursor(tornadoImage, mouseX, mouseY);
+   }catch (IndexOutOfBoundsException ioobe){
+    cursor(HAND); 
+   }
  }
  @Override
  void act(int x, int y){

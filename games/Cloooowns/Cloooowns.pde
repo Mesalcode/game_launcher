@@ -58,24 +58,38 @@ Ability wind;
 Ability blackHole;
 Ability wolfChase;
 Ability ghostKidnapping;
-boolean shopMode = false;
+boolean shopMode;
+boolean menuMode;
 Upgrade summonBird;
 Upgrade summonBirdB;
 Upgrade summonBirdC;
 int clownSpawnDelay;
-int csdc = 0;
-int points = 0;
-int coins = 0;
-int lives = 50;
-int cashMultiplicator = 1;
-float musicVolume = 0.5;
+int csdc;
+int points;
+int coins;
+int lives;
+int cashMultiplicator;
+float musicVolume;
 Cursor activeCursor;
-boolean blackHoleActive = false;
-int abilityAnimationLength = 0;
-int abilityAnimationPosition = 0;
+boolean blackHoleActive;
+int abilityAnimationLength;
+int abilityAnimationPosition;
 void setup(){
+  fullScreen(); 
+  init();
+}
+void init(){
  frameRate(30);
- fullScreen(); 
+ csdc = 0;
+ points = 0;
+ lives = 50;
+ cashMultiplicator = 1;
+ musicVolume = 0.5;
+ abilityAnimationLength = 0;
+ abilityAnimationPosition = 0;
+ blackHoleActive = false;
+ shopMode = false;
+ menuMode = false;
  minim = new Minim(this);
  textFont(createFont("pixelart.ttf",32));
  torchImage = loadImage("torch.png");
@@ -134,7 +148,7 @@ void setup(){
  blackHole  = new Blackhole();
  wolfChase = new WolfChase();
  ghostKidnapping = new GhostKidnapping();
- activeCursor = new CursorTornado();
+ activeCursor = new CursorHand();
  activeCursor.init();
  summonBird = new BirdSummoner();
  summonBirdB = new BirdSummonerB();
@@ -144,7 +158,7 @@ void setup(){
  new DoubleCash(30*120),new GhostAttack(30*20),
  new GhostAttack(30*10),new WolfAttack(30*30),
  new WolfAttack(30*20),new WolfAttack(30*10),
- new HighSpeed(30*30),new HighSpeed(30*20),
+ new HighSpeed(10*30),new HighSpeed(10*20),
  new ClownAlarm(30*30),new ClownAlarm(60*30),
  new ClownAlarm(75*30), new BlackholePanic(),
  new BlackholePanic(),new MouseAttack(30*30),
@@ -156,7 +170,7 @@ void setup(){
  clowns.add(new WeakClown(weakclownImage,(int)(random(displayWidth/2)+displayWidth/4),displayHeight-displayHeight/3-displayHeight/8,(int)frameRate));
 }
 void draw(){
- if (!shopMode){
+ if (!shopMode&!menuMode){
  if (!blackHoleActive){
  image(bg,0,0); 
  ArrayList<Ghost> clonedGhosts = (ArrayList<Ghost>)ghosts.clone();
@@ -267,22 +281,36 @@ void draw(){
     currentEvent = null; 
   }
  }
- }else {
-   shop();
-   
- }
+ }else if (menuMode)
+   menu();
+  else if (shopMode)
+    shop();
 }
 
 void mouseMoved(){
-  activeCursor.act(mouseX,mouseY);
+  if (!menuMode&!shopMode)
+    activeCursor.act(mouseX,mouseY);
+}
+void mousePressed(){
+ if (menuMode)
+   handleMenuPress(mouseX,mouseY);
 }
 void keyPressed(){
+ 
+ switch (keyCode){
+  case TAB:
+    shopMode = !shopMode;
+    break;
+  case ESC:
+    key = 0;
+    menuMode = !menuMode;
+    break;
+ }
+ 
  if (key=='m')
    magic.exec();
  if (key=='w')
    wind.exec();
- if (keyCode==TAB)
-   shopMode = !shopMode;
  if (key=='h')
    wolfChase.exec();
  if (key=='g')
@@ -307,10 +335,7 @@ void startEvent(){
   Event e = events[(int)random(events.length-1)];
   try {
   currentEvent = currentEvent==null ? (Event)e.clone() : currentEvent;
-  }catch (CloneNotSupportedException cnse){
-    
-  }
-  
+  }catch (CloneNotSupportedException cnse){} 
 }
 void spawnClown(){
   if (random(100)<=90){

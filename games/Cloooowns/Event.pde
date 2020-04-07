@@ -13,15 +13,14 @@ class Event implements Cloneable{
   }
   @Override
    public Object clone() throws CloneNotSupportedException {
-      Event cloned = (Event)super.clone();
-      return cloned;
+     return (Event)super.clone();
    }
  void showMessage(){
    
  }
  void begin(){
- existedFor++;
- textAlign(CENTER,CENTER);
+   existedFor++;
+   textAlign(CENTER,CENTER);
    textSize(100);
    filter(GRAY);
    filter(BLUR);
