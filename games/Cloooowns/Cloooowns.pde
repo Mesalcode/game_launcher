@@ -42,6 +42,12 @@ PImage shopGhosts;
 PImage shopBirdA;
 PImage shopBirdB;
 PImage shopBirdC;
+PImage shopCat;
+PImage shopFire;
+PImage shopMagic;
+PImage shopTornado;
+PImage shopWind;
+PImage shopWolf;
 float bloonSpeed = -0.01;
 ArrayList<Clown> clowns;
 ArrayList<Balloon> bloons;
@@ -132,6 +138,12 @@ void init(){
  catLeftImage = loadImage("cat_left.png");
  catRightImage = loadImage("cat_right.png");
  tornadoImage = loadImage("tornado.png");
+ shopCat = loadImage("shop_cat.png");
+ shopFire = loadImage("shop_fire.png");
+ shopMagic = loadImage("shop_magic.png");
+ shopTornado = loadImage("shop_tornado.png");
+ shopWind = loadImage("shop_wind.png");
+ shopWolf = loadImage("shop_wolf.png");
  bg.resize(displayWidth,displayHeight);
  clowns = new ArrayList<Clown>();
  bloons = new ArrayList<Balloon>();
@@ -194,7 +206,7 @@ void draw(){
   else{
     spawnClown();
     csdc = 0; 
-    if (random(100)<=40)
+    if (random(100)<=10)
       startEvent();
   }
  }else {

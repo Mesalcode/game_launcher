@@ -24,6 +24,24 @@ void shop(){
   rect(displayWidth/12+displayWidth-displayWidth/12*2-250*2-30,displayHeight/7,-250,250);
   shopBirdC.resize(250,250);
   image(shopBirdC,displayWidth/12+displayWidth-displayWidth/12*2-250*2-30,displayHeight/7);
+  rect(displayWidth/12+30,displayHeight/7+250,250,250);
+  shopMagic.resize(250,250);
+  image(shopMagic,displayWidth/12+30,displayHeight/7+250);
+  rect(displayWidth/12+30+250,displayHeight/7+250,250,250);
+  shopWind.resize(250,250);
+  image(shopWind,displayWidth/12+30+250,displayHeight/7+250);
+  rect(displayWidth/12+30+250*2,displayHeight/7+250,250,250);
+  shopWolf.resize(250,250);
+  image(shopWolf,displayWidth/12+30+250*2,displayHeight/7+250);
+  rect(displayWidth/12+displayWidth-displayWidth/12*2-30-500,displayHeight/7+250,-250,250);
+  shopCat.resize(250,250);
+  image(shopCat,displayWidth/12+displayWidth-displayWidth/12*2-250*3-30,displayHeight/7+250);
+  rect(displayWidth/12+displayWidth-displayWidth/12*2-30-250,displayHeight/7+250,-250,250);
+  shopFire.resize(250,250);
+  image(shopFire,displayWidth/12+displayWidth-displayWidth/12*2-250*3-30+250,displayHeight/7+250);
+  rect(displayWidth/12+displayWidth-displayWidth/12*2-30,displayHeight/7+250,-250,250);
+  shopTornado.resize(250,250);
+  image(shopTornado,displayWidth/12+displayWidth-displayWidth/12*2-250*3-30+500,displayHeight/7+250);
   textAlign(LEFT);
   
 }
