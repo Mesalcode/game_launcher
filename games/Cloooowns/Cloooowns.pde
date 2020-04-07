@@ -189,7 +189,7 @@ void draw(){
    b.move();
  }
  
- if (csdc<clownSpawnDelay)
+ 
    csdc++;
   else{
     spawnClown();
