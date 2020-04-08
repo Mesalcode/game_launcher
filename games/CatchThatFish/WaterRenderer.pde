@@ -13,6 +13,7 @@ class WaterRenderer extends Renderer{
    render();
  }
  private void render(){
+   noStroke();
    rect(originX,originY,_width-originX,depth-originY);
  }
 }

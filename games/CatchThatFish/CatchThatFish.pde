@@ -10,7 +10,8 @@ void setup(){
  camera = new Camera(displayWidth/2,displayHeight/2);
 }
 void initializeGlobalVariables(){
- gWaterColor = new int[]{0,0,125,40};
+ //gWaterColor = new int[]{0,0,125,40};
+ gWaterColor = new int[]{#3169DE};
 }
 void initializeRenderers(){
  waterRenderer = new WaterRenderer(0,600,2000,5000,gWaterColor); 
