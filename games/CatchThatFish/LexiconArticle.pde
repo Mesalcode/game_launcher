@@ -5,5 +5,4 @@ class LexiconArticle{
    this.latName = latName;
    this.text = text;
  }
-  
 }

@@ -1,14 +1,13 @@
 class Camera{
-  int positionX,positionY;
-  Camera(int startPositionX, int startPositionY){
-   positionX = startPositionX;
-   positionY = startPositionY;
+  Position position;
+  Camera(Position position){
+    this.position = position;
   }
   void arrange(){
-     camera(positionX, positionY, (displayHeight / 2) / tan(PI*30.0 / 180.0), positionX, positionY, 0, 0, 1, 0);
+     camera((float)position.x, (float)position.y, (displayHeight / 2) / tan(PI*30.0 / 180.0), (float)position.x, (float)position.y, 0, 0, 1, 0);
   }
-  void move(int byX, int byY){
-    positionX += byX;
-    positionY += byY;
+  void moveY(int by){
+    if (position.y+displayHeight/2+by<=gWorldBorderY&position.y-displayHeight/2+by>=0)
+      position.y += by;
   }
 }

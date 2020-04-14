@@ -1,19 +1,18 @@
-class WaterRenderer extends Renderer{
+class WaterRenderer implements Renderer{
  int originX,originY,_width,depth;
  int[] waterColor;
- WaterRenderer(int originX, int originY, int _width, int depth, int[] waterColor){
+ PImage image;
+ WaterRenderer(int originX, int originY, int _width, int depth, PImage image){
    this.originX = originX;
    this.originY = originY;
    this._width = _width;
    this.depth = depth;
-   this.waterColor = waterColor;
+   this.image = image;
  }
  void execute(){
-   super.adjustingFill(waterColor);
    render();
  }
  private void render(){
-   noStroke();
-   rect(originX,originY,_width-originX,depth-originY);
+   image(image,0,0);
  }
 }

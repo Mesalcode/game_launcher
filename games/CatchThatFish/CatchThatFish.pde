@@ -3,31 +3,31 @@ Camera camera;
 ArrayList<FishSettings> fishSettings;
 ArrayList<Renderer> renderers;
 ArrayList<Fish> fishs;
-int[] gWaterColor;
+int gWorldBorderX,gWorldBorderY;
 float gSizeMultiplicator;
-
+PImage backgroundImage;
 void setup(){
  frameRate(60);
  fullScreen(P3D);
  initializeGlobalVariables();
  initializeRenderers();
- camera = new Camera(displayWidth/2,displayHeight/2);
+ camera = new Camera(new Position(displayWidth/2,displayHeight/2));
 }
-void initializeGlobalVariables(){
- //gWaterColor = new int[]{0,0,125,40};
- gWaterColor = new int[]{#74C4FF};
- gSizeMultiplicator = 0.35;
+private void initializeGlobalVariables(){
+ gSizeMultiplicator = 0.15;
  renderers = new ArrayList<Renderer>();
  fishs = new ArrayList<Fish>();
  fishSettings = loadFishSettings();
+ backgroundImage = loadImage("background.png");
+ gWorldBorderX = backgroundImage.width;
+ gWorldBorderY = backgroundImage.height;
 }
-void initializeRenderers(){
- renderers.add(new WaterRenderer(0,600,20000,5000,gWaterColor)); 
+private void initializeRenderers(){
+ renderers.add(new WaterRenderer(0,600,20000,5000,backgroundImage)); 
  for (FishSettings f : fishSettings){
-   fishs.add(new Fish(f));
- }
- for (Fish f : fishs){
-   renderers.add(new FishRenderer(f));
+   Fish toAdd = new Fish(f);
+   fishs.add(toAdd);
+   renderers.add(new FishRenderer(toAdd));
  }
 }
 void draw(){
@@ -43,22 +43,21 @@ void draw(){
  if (keyPressed)
    testMoveAroundFreelyWithArrowKeys(keyCode); 
 }
-ArrayList<FishSettings> loadFishSettings(){
-  
-  String[] abilities = loadStrings("META/ABILITIES.meta");
-  for (int i = 0; i < abilities.length;i++)
-    abilities[i] = abilities[i].substring(abilities[i].indexOf(",")+1);
-  String[] lexicons = loadStrings("META/LEXICON.meta");
-  for (int i = 0; i < lexicons.length;i++)
-    lexicons[i] = lexicons[i].substring(lexicons[i].indexOf(",")+1);
-  String[] renderData = loadStrings("META/RENDER.meta");
-  for (int i = 0; i < renderData.length;i++)
-    renderData[i] = renderData[i].substring(renderData[i].indexOf(",")+1);
-  ArrayList<FishSettings> setts = new ArrayList<FishSettings>();
+private String[] loadMetaData(String metaName){
+  String[] metaData = loadStrings("META/"+metaName+".meta");
+  for (int i = 0; i < metaData.length;i++)
+    metaData[i] = metaData[i].substring(metaData[i].indexOf(",")+1);
+  return metaData;
+}
+private ArrayList<FishSettings> loadFishSettings(){
+  String[] abilities = loadMetaData("ABILITIES");
+  String[] lexicons = loadMetaData("LEXICON");
+  String[] renderData = loadMetaData("RENDER");
+  ArrayList<FishSettings> settings = new ArrayList<FishSettings>();
   for (int i = 0; i < abilities.length;i++){
-     String[] lSplit = lexicons[i].split(",");
+     String[] lexiconSplit = lexicons[i].split(",");
      String[] abilitiesSplit = abilities[i].split(",");
-     setts.add(new FishSettings(loadImage(renderData[i]),new LexiconArticle(lSplit[0],lSplit[1],lSplit[2]),new AbilityData(Double.parseDouble(abilitiesSplit[0]),Double.parseDouble(abilitiesSplit[1]),Double.parseDouble(abilitiesSplit[2]))));
+     settings.add(new FishSettings(loadImage(renderData[i]),new LexiconArticle(lexiconSplit[0],lexiconSplit[1],lexiconSplit[2]),new AbilityData(Double.parseDouble(abilitiesSplit[0]),Double.parseDouble(abilitiesSplit[2]),Double.parseDouble(abilitiesSplit[1]))));
   }
-  return setts;
+  return settings;
 }

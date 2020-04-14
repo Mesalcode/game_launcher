@@ -1,4 +1,4 @@
-0,Frapfisch,Frapensis organes,Der Frapfisch beakm seine geld-leuchtenden Spiralen erst nachdem er durch einen Blitz elektrisiert wurde. Man meint er könne große Stromstöße abgeben.
+0,Frapfisch,Frapensis organes,Der Frapfisch bekam seine geld-leuchtenden Spiralen erst nachdem er durch einen Blitz elektrisiert wurde. Man meint er könne große Stromstöße abgeben.
 1,Frisbeefisch,Curun agensis,Der Frisbeefisch wurde von Fischern oft geangelt bis er sich schließlich in das tiefere Meer zurückzog.
 2,Anglerfisch,Antennariidae,Der Anglerfisch hält sich in den tiefen des Meeres auf und erleichtert seine Sicht durch eine Lampe auf seinem Kopf.
 3,Geisterfisch,Gonoeus tribila,Der Geisterfisch ist eine häufige Erzählung von Fischern, aber kaum jemand hat ihn jemals zu Gesicht bekommen, da er in den Tiefen des Meeres zu Hause ist.
@@ -12,4 +12,89 @@
 11,Frohfisch,Froneaiue,Der Frohfisch wurde noch nie ohne sein Markenzeichen, das Lächeln gesichtet. Daher kommt sein sonderbarer Name.
 12,Qualle,Scyphozoa,Die Qualle mag zwar harmlos wirken, aber ihre Gifttentakel können es selbst mit doppelt so großen Feinden wie sie selbst aufnehmen.
 13,Zitronenfisch,Zystzup,Der Zitronenfisch lebt im mittelseichten Wasser und bekam seinen Namen wegen seiner auffälligen Farbgebung die an die Zitrone erinnert.
-14,Magmarfisch,Magmarius magmariko,Der Magmarfisch hällt sich gerne in der Nähe von Hitzequellen auf.
+14,Magmarfisch,Magmarius magmariko,Der Magmarfisch hält sich gerne in der Nähe von Hitzequellen auf.
+15,Mantarochen,Mantus designata,Der Manatarochen ist ein exzellenter Jäger aufgrund seiner hohen Geschwindigkeit. Taucher haben ihn aber selten zu fürchten, da er die Nähe des Boden bevorzugt.
+16,Fleischfisch,Floska piscus,Der Fleischfisch sieht nicht nur fleischig aus, sondern ist sehr nahrhaft und erreicht dadurch hohe Preise.
+17,Engelsfisch,Floska engos piscus,Der Engelsfisch wird von diversen religiösen Gruppen als Heiligtum angesehen. Den Fischern ist das egal.
+18,Aquanofisch,Aquas piscus,Der Aquanofisch fällt durch seine dreieckige Form und seine markanten Farben auf.
+19,Pfeilfisch,Pfuscus piscus,Der Pfeilfisch wurde wegen pfeilartigen Mustern auf seinen Schuppen schon von Ureinwohner der Erde Pfeilfisch getauft.
+20,Baby Teufelsfisch,Babos tofu piscus param,Der Teufelsfisch hat seinen Namen seiner Vergangenheit mit dem Ertränken schutzloser Menschen zu verdanken.
+21,Baby Flugfisch,Babos Flaeous,Der Flugfisch wurde so genannt, da er wie seine Wasserkameraden die Delphine aus dem Wasser springt und es aussieht als würde er fliegen.
+22,Baby Mond-Tintenfisch,Babos tofu piscus tintos,Der Mond-Tintenfisch bekam seinen Namen aufgrund seiner Oberfläche die der des Mondes ähnelt.
+23,Baby Onofisch,Babos tofu piscus ono,Der Onofisch verdankt seinen an engl. Onion, d.h. Zwiebel, angelehnten Namen, der Tatsache, das sein Körper wie eine Zwiebel geformt ist.
+24,Baby Orca,Babos tofu piscus orca,Der Orca ist eine Art von Wal die etwas kleiner als durchschnittliche Wale ist.
+25,Baby Seepferdchen,Babos tofu horsos aqua,Das Seepferdchen erfreut sich bei Kindern einer großen Beliebtheit, wogegen es auf dem Markt kaum geschätzt wird, da es aufgrund seines Lebensraums im seichten Wasser oft gefangen wird.
+26,Baby Hai,Babos tofu haios aqua,Der Hai wird von Menschen gefürchtet und gemieden. Deshalb ist sein Wert auf dem Markt hoch.
+27,Baby Tintenfisch,Babos tofu tintos piscus aquabo,Der Tintentfisch ist aufgrund seiner Farbstoffproduktion auf dem Fischmarkt hoch dotiert.
+28,Baby Schwertfisch,Babos tofu sworona aquabo,Der Schwertfisch bekam seinen Namen durch seinen schwertartigen Oberkiefer.
+29,Baby Wal,Babos tofu walensis aquabo,Der Wal ernährt sich häufig nur von Plankton und kleinen Fischen, ab und zu beisst er allerdings auch von geschwächten größeren Fischen oder Jägern ab.
+30,Bananenfisch,Banana leckehr,Der Bananenfisch bekam seinen Namen aufgrund seiner banenenähnlichen Form.
+31,Baronfisch,Babananelo danes,Der Baronfisch verdankt seinen Namen seiner hochnäsigen Art, seine Artgenossen zu ignorieren und sich nicht in Gruppen zu bewegen.
+32,Großrotfisch,Great demis nemensgensis piscus,Der Großrotfisch verdankt seinen Namen seiner großen roten Gestalt.
+33,Blauer Seebarsch,Bonobo basos aqaubo piscus,Der blaue Seebarsch hällt sich vermehrt im mittelseichten Gewässer auf und erfreut sich daher großer Beliebtheit bei Fischern.
+34,Blauer Linienfisch,Bonobo linos aqaubo piscis,Der blaue Linienfisch bekam seinen Namen durch seine unverkennbare blaue Farbe und Linierung.
+35,Blauer Proboscisfisch,Bonobo proboscis Piscium,Der blaue Proboscisfisch hat seinen Namen von einem grieschichen Alchemisten bekommen. Keiner weiß was sein Name bedeuten soll.
+36,Blauer Hai,Bonobo haios aqua,Der Hai wird von Menschen gefürchtet und gemieden. Deshalb ist sein Wert auf dem Markt hoch.
+37,Bulbfisch,Bulbaneious,Der Bulbfisch wird oft durch das blaue Wasser mit dem Blauem Linienfisch verwechselt.
+38,Butterfisch,Buttaeious,Der Butterfisch wird traditionell mit Butter beschmiert bevor er verspeist wird.
+39,Citrasfisch,Citraeoious,Der Citrasfisch wird oft in Gemälden dargestellt, da seine Art schon sehr lange auf der Erde habitiert.
+40,Kabeljau,Gadus morhua,Der Kabeljau ist eine beliebte Speise.
+41,Kaltblütiger Dreiecksfisch,Katreous,Der kaltblutige Dreiecksfisch wurde so genannt, da er eine dreieckige Form und ein kaltes Herz für seine Kameraden hat.
+42,Korallenfisch,Komonus obsca,Der Korallenfisch heisst so, weil er sich bevorzugt in der Nähe von Korallen aufhällt.
+43,Tiefseetintenfisch,Teskaedousvusbus,Der Tiefseetintenfisch lebt wie sein Name verrät in den Tiefen des Meeres.
+44,Wüstenfisch,Desertikus memus pisconna,Der Wüstenfisch bekam seinen Namen wegen seines Farbtons.
+45,Teufelfisch,Piscus param,Der Teufelsfisch hat seinen Namen seiner Vergangenheit mit dem Ertränken schutzloser Menschen zu verdanken.
+46,Dolly,Dolly,Dolly ist ein süßer Fisch. Er hällt sich häufig in Korallenriffen auf.
+47,Delphin,Delpos,Der Delphin fällt durch sein amüsiertes Springen aus dem Wasser auf, da er keine Kiemen aufweist.
+48,Dori,Dori,Dori wurde durch einen Kinohit bekannt.
+49,Drachenfisch,dragos piscus,Der Drachenfisch heisst Drachenfisch wegen seinem Kamm.
+50,Finfisch,fin fonet,Der Finfisch wurde nach seiner Herkunft benannt. Er ist ein wahrer Finne.
+51,Flunder,Flunder,Die Flunder lebt in steinigem Gebiet, um sich zu tarnen.
+52,Flugfisch,Flaeous,Der Flugfisch wurde so genannt, da er wie seine Wasserkameraden die Delphine aus dem Wasser springt und es aussieht als würde er fliegen.
+53,Footballfisch,Fotbahl piscus,Der Footballfisch erhielt seinen Namen durch seine äußerlichen Ähnlichkeiten mit dem Football.
+54,Mond-Tintentfisch,Piscus tintos,Der Mond-Tintenfisch bekam seinen Namen aufgrund seiner Oberfläche die der des Mondes ähnelt.
+55,Nemo,Nemo,Nemo wurde durch einen Kinohit bekannt.
+56,Onofisch,Piscus ono,Der Onofisch verdankt seinen an engl. Onion, d.h. Zwiebel, angelehnten Namen, der Tatsache, das sein Körper wie eine Zwiebel geformt ist.
+57,Orca,Piscus orca,Der Orca ist eine Art von Wal die etwas kleiner als durchschnittliche Wale ist.
+58,Paletifish,Piscus paletti,Der Paletifish fällt durch seine auffälligen Flossen auf.
+59,Barsch,Bonobo,Der Barsch ist beliebt, da sein Fleisch sehr nahrhaft und gesund ist.
+60,Piranha,proboscis memus,Der Piranha kann aufgrund seiner spitzen Zähne eine Gefahr darstellen.
+61,Piratenfisch,Pronno memus piscus,Der Piratenfisch bekam seinen Namen durch den Fakt, dass er räuberisches Verhalten gegenüber seinen Kameraden anwendet.
+62,Giftfisch,Pronno memus gofto piscus,Der Giftfisch ist nicht wirklich giftig. Nur durch sein gift-grünes Aussehen wurde er mit dem Unglück seines Namens beschenkt.
+63,Proboscisfisch,Proboscis Piscium,Der Proboscisfisch hat seinen Namen von einem grieschichen Alchemisten bekommen. Keiner weiß was sein Name bedeuten soll.
+64,Pufferfish,Pofon memus pisconna,Der Pufferfisch ist für seine Aufblasfähigkeit bekannt.
+65,Pinker Frapfisch,Frapensis memus de pinkos organes,Der Frapfisch bekam seine geld-leuchtenden Spiralen erst nachdem er durch einen Blitz elektrisiert wurde. Man meint er könne große Stromstöße abgeben.
+66,Rattenfisch,Ratos piscus ratiros teufel,Der Rattenfisch hat große Ähnlichkeiten mit seinem genetischen Cousin der Ratte.
+67,Röstfisch,Braten guhd piscus,Der Röstfisch heisst so, da er wie geröstet aussieht.
+68,Robonfisch,Robos,Ein fremder Cousin des Onofisches.
+69,RomRom,RomRom,RomRom.
+70,Sadine,Sadoeous,Eine Sadine wird bei Festen verspeist.
+71,Safarifisch,Samoeuous,Der Safarifisch war schon auf vielen ,,Safaris", manche munkeln sogar, dass sein Lebensraum mal der Amazonas (ein großer Fluss im Regenwald) war.
+72,Segelfisch,Samoeleosuous,Der Segelfisch bekam seinen Namen wegen seiner segelartigen Flossen.
+73,Seekuh,Samoeloeousdasouas,Die Seekuh ist eine ferne verwandte der Milchkuh.
+74,Seepferdchen,Horsos aqua,Das Seepferdchen erfreut sich bei Kindern einer großen Beliebtheit, wogegen es auf dem Markt kaum geschätzt wird, da es aufgrund seines Lebensraums im seichten Wasser oft gefangen wird.
+75,Seeweizenfisch,Hornroeois,Der Seeweizenfisch versteckt sich häufig im Seeweizen. Über Jahrhunderte hat sich seine Farbe deswegen angepasst.
+76,Sedofisch,Samoeloeousdasouaslala,Der Sedofisch ist beliebt als Speise. Denn er ist sehr lecker.
+77,Hai,Haios aqua,Der Hai wird von Menschen gefürchtet und gemieden. Deshalb ist sein Wert auf dem Markt hoch.
+78,Siamesischer Kampfisch,Bystzup pisconner aqaubo,Der siamesische Kampfisch liebt es sich zu wrestlen und wird nicht gerne gefangen.
+79,Skelettfisch,Skealieiaos,Der Skelettfisch bekam seinen Namen von  seinem skelettähnlichen Aussehen.
+80,KleiHa,Sadoeous harmlo,Der KleiHa wurde von David Daddario entdeckt. Wegen seiner Rechtschreibschwäche endete der Fisch mit dem Namen KleiHa.
+81,Spedfisch,Sadoeous memus,Der Spedfisch erinnert wegen seiner blauen Farbe an Sonic.
+82,Quadratfisch,quoque se,Der Quadratfisch ist quadratisch.
+83,Tintentfisch,quoque le,Der Tintenfisch ist wegen seiner Tintenproduktion begehrt.
+84,Stachelrochen,quoque pisconner,Der Stachelrochen ist ein guter Jäger.
+85,Sulkfisch,Samoeuous selk,Der Sulkfisch wurde häufig an Hühner verfüttert, bevor entdeckt wurde das Hühner Körner mögen.
+86,Sonnenfisch,sworona corona,Der Sonnenfisch strahlt wie die Sonne.
+87,Schwertfisch,Tofu sworona aquabo,Der Schwertfisch bekam seinen Namen durch seinen schwertartigen Oberkiefer.
+88,Tanifisch,Tofu sworona aqaubo mom,Der Tanifisch ist gut getarnt.
+89,Trotfisch,Tofout,Der Trotfisch wurde von David Daddario entdeckt. Daher kommt sein Name.
+90,Tigerfisch,Tofout binkosa memus piscus pisconna aquabo,Der Tigerfisch bekam seinen Namen wegen seiner Streifen.
+91,Tigerhai,Tofout binkosa memus haios,Der Tigerhai hat seinen Namen aufgrund einer Verwechslung mit einem schwimmenden Tiger vor 3000 Jahren.
+92,Zahnfisch,Delta om med est zan,Der Zahnfisch hat einen großen Wackelzahn, der nicht rausfällt. 
+93,Schildkröte,Scyphozoa memus,Die Schildkröte ist langsam.
+94,Dreiecksfisch,Pisces ball,Der Dreiecksfisch bekam seinen Namen durch seine dreieckige Form.
+95,Thunfisch,pisconner lekka,Der Thunfisch ist lecker und nahrhaft und gesund.
+96,Zweischwanzfisch,pisconnet deux ta,Der Zweischwanzfisch hat zwei schwanzartige Flossen.
+97,Walross,walensis bob,Das Walross ist stark.
+98,Wal,walensis,Der Wal ist der Größte im Ozean, an Land kann ihm nur ein Pudel, eine Hyäne, eine Dogge oder ein Windhund das Wasser reichen.
+99,Zombiefisch,zomb,Der Zombiefisch ist grün wie ein Zombie.

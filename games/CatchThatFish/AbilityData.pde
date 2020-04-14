@@ -5,5 +5,4 @@ class AbilityData{
    this.speed = speed/2;
    this.size = size;
   }
-
 }
