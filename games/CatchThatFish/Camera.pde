@@ -1,13 +1,12 @@
 class Camera{
-  Position position;
-  Camera(Position position){
+  MesalAPI.Position position;
+  Camera(MesalAPI.Position position){
     this.position = position;
   }
-  void arrange(){
-     camera((float)position.x, (float)position.y, (displayHeight / 2) / tan(PI*30.0 / 180.0), (float)position.x, (float)position.y, 0, 0, 1, 0);
+  void arrange(){ 
+    api._camera(position);
   }
   void moveY(int by){
-    if (position.y+displayHeight/2+by<=gWorldBorderY&position.y-displayHeight/2+by>=0)
-      position.y += by;
+    position.changeCoordinatesBy(0.0,position.y+displayHeight/2+by<=gWorldBorderY&position.y-displayHeight/2+by>=0 ? by : 0);
   }
 }

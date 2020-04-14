@@ -1,5 +1,6 @@
 WaterRenderer waterRenderer;
 Camera camera;
+MesalAPI api;
 ArrayList<FishSettings> fishSettings;
 ArrayList<Renderer> renderers;
 ArrayList<Fish> fishs;
@@ -11,7 +12,7 @@ void setup(){
  fullScreen(P3D);
  initializeGlobalVariables();
  initializeRenderers();
- camera = new Camera(new Position(displayWidth/2,displayHeight/2));
+ camera = new Camera(new MesalAPI().new Position(displayWidth/2,displayHeight/2));
 }
 private void initializeGlobalVariables(){
  gSizeMultiplicator = 0.15;
@@ -21,6 +22,7 @@ private void initializeGlobalVariables(){
  backgroundImage = loadImage("background.png");
  gWorldBorderX = backgroundImage.width;
  gWorldBorderY = backgroundImage.height;
+ api = new MesalAPI();
 }
 private void initializeRenderers(){
  renderers.add(new WaterRenderer(0,600,20000,5000,backgroundImage)); 

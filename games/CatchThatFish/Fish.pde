@@ -1,52 +1,38 @@
 class Fish{
- Position position;
- Position targetPosition;
+ MesalAPI.Position position;
+ MesalAPI.Position targetPosition;
  FishOrientation orientation;
  FishSettings settings;
  Fish(FishSettings settings){
    this.settings = settings;
-   position = new Position((int)random(0,gWorldBorderX),(int)random(800,gWorldBorderY));
-   orientation = FishOrientation.STANDBY;
+   position = new MesalAPI().new Position((int)random(0,gWorldBorderX),(int)random(800,gWorldBorderY));
  }
  private void renewTarget(){
-   int[] newTargetCoordinates = findNewTarget();
-   targetPosition = new Position(newTargetCoordinates[0],newTargetCoordinates[1]);
+   targetPosition = new MesalAPI().new Position(findNewTarget()[0],findNewTarget()[1]);
+ }
+ private FishOrientation selectOrientation(){
+   return (oneDimensionalDist((int)position.x,(int)targetPosition.x)>=10 ? (targetPosition.x<position.x&targetPosition.y<position.y ? FishOrientation.LEFT_UP : (targetPosition.x<position.x&targetPosition.y>position.y ? orientation = FishOrientation.LEFT_DOWN : (targetPosition.x<position.x&targetPosition.y==position.y ? FishOrientation.LEFT : (targetPosition.x>position.x&targetPosition.y<position.y ? FishOrientation.RIGHT_UP : (targetPosition.x>position.x&targetPosition.y>position.y ? FishOrientation.RIGHT_DOWN: (targetPosition.x>position.x&targetPosition.y==position.y ? FishOrientation.RIGHT : FishOrientation.STANDBY)))))) : ((oneDimensionalDist((int)position.y,(int)targetPosition.y)>=10) ? (targetPosition.y>position.y ? FishOrientation.DOWN : FishOrientation.UP) : FishOrientation.STANDBY));
+ }
+ private boolean newTargetNeeded(){
+   try {
+     if (targetPosition.isResetted()) {return true;}}
+   catch (NullPointerException notInitializedYet) {return true;}
+   return false;
+ }
+ private void updateOrientationAndPosition(){
+   orientation = selectOrientation();
+   changePositionByOrientation();
+ }
+ private boolean hasReachedTarget(){
+   return dist((float)position.x,(float)position.y,(float)targetPosition.x,(float)targetPosition.y)<50;
  }
  void move(){
-  try {
-    if (targetPosition.x==0&targetPosition.y==0){
-     renewTarget();
-    }
-  }catch (NullPointerException nullPointerException){
+  if (newTargetNeeded())
     renewTarget();
-  }
-  if (dist((float)position.x,(float)position.y,(float)targetPosition.x,(float)targetPosition.y)<50){
-    targetPosition.x = 0;
-    targetPosition.y = 0;
-  }else {
-    if (oneDimensionalDist((int)position.x,(int)targetPosition.x)>=10){
-      if (targetPosition.x<position.x&targetPosition.y<position.y)
-       orientation = FishOrientation.LEFT_UP;
-      else if (targetPosition.x<position.x&targetPosition.y>position.y)
-        orientation = FishOrientation.LEFT_DOWN;
-      else if (targetPosition.x<position.x&targetPosition.y==position.y)
-        orientation = FishOrientation.LEFT;
-      else if (targetPosition.x>position.x&targetPosition.y<position.y)
-       orientation = FishOrientation.RIGHT_UP;
-      else if (targetPosition.x>position.x&targetPosition.y>position.y)
-        orientation = FishOrientation.RIGHT;
-      else if (targetPosition.x>position.x&targetPosition.y==position.y)
-        orientation = FishOrientation.RIGHT;
-    }else if (oneDimensionalDist((int)position.y,(int)targetPosition.y)>=10){
-     if(targetPosition.y>position.y)
-       orientation = FishOrientation.DOWN;
-     else
-       orientation = FishOrientation.UP;
-    }else {
-       orientation = FishOrientation.STANDBY; 
-    }
-    changePositionByOrientation();
-  }
+  else if (hasReachedTarget())
+    targetPosition.resetCoordinates();
+  else 
+    updateOrientationAndPosition();
  }
  private int oneDimensionalDist(int pos1, int pos2){
   return pos2-pos1 >= 0 ? pos2-pos1 : -(pos2-pos1);
@@ -58,33 +44,6 @@ class Fish{
    position.changeCoordinatesBy((double)(left ? -settings.abilityData.speed : (right ? settings.abilityData.speed : 0)), (up ? -settings.abilityData.speed : (down ? settings.abilityData.speed : 0)));
  }
  private void changePositionByOrientation(){
-  switch (orientation){
-   case LEFT_UP:
-     move(false,true,true,false);
-     break;
-   case LEFT_DOWN:
-     move(true,false,true,false);
-     break;
-   case LEFT:
-     move(false,false,true,false);
-     break;
-   case RIGHT_UP:
-     move(false,true,false,true);
-     break;
-   case RIGHT_DOWN:
-     move(true,false,false,true);
-     break;
-   case RIGHT:
-     move(false,false,false,true);
-     break;
-   case UP:
-     move(false,true,false,false);
-     break;
-   case DOWN:
-     move(true,false,false,false);
-     break;
-   case STANDBY:
-     break;
-  }
+    move(orientation==FishOrientation.STANDBY?false:(orientation==FishOrientation.LEFT_DOWN||orientation==FishOrientation.RIGHT_DOWN||orientation==FishOrientation.DOWN),orientation==FishOrientation.STANDBY?false:(orientation==FishOrientation.LEFT_UP||orientation==FishOrientation.STANDBY?false:(orientation==FishOrientation.RIGHT_UP||orientation==FishOrientation.UP)),orientation==FishOrientation.STANDBY?false:(orientation==FishOrientation.LEFT_UP||orientation==FishOrientation.LEFT_DOWN||orientation==FishOrientation.LEFT),(orientation==FishOrientation.RIGHT_UP||orientation==FishOrientation.RIGHT_DOWN||orientation==FishOrientation.RIGHT));
  }
 }
