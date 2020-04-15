@@ -35,5 +35,6 @@ class AbilityData{
     this.topBorder = topBorder;
     this.bottomBorder = bottomBorder;
     this.leftOffsetInPositivePixels = leftOffsetInPositivePixels;
+    this.rightOffsetInPositivePixels = rightOffsetInPositivePixels;
   }
 }
