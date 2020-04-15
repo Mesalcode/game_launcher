@@ -21,16 +21,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-class FishRenderer implements Renderer{
-  Fish toRender;
-  FishRenderer(Fish toRender){  this.toRender = toRender;  }
-  @Override
-  void execute(){
-    pushMatrix();
-    api._translate(toRender.position);
-    Command adjustGraphicsToOrientation = toRender.orientation==FishOrientation.LEFT||toRender.orientation==FishOrientation.LEFT_DOWN||toRender.orientation==FishOrientation.LEFT_UP ? () -> scale(-1,1) : (toRender.orientation==FishOrientation.UP ? () -> rotate(radians(-90)) : (toRender.orientation==FishOrientation.DOWN ? () -> rotate(radians(90)) : () -> {}));
-    adjustGraphicsToOrientation.execute();
-    api.imageCentered(toRender.settings.image,0,0);
-    popMatrix();
-  }
+interface Command{
+  void execute();
 }
