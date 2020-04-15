@@ -50,9 +50,5 @@ class MesalAPI{
    boolean isResetted(){
     return x==0&y==0; 
    }
-   void define(Object[] from, Object[] to){
-     for (int i = 0; i < from.length;i++)
-       to[i] = from[i];
-   }
   }
 }
