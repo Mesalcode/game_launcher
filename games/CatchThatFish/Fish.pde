@@ -54,11 +54,9 @@ class Fish{
  private int[] findNewTarget(){
   int[] newTarget;
   if (settings.abilityData.newVariant){
-  println((float)settings.abilityData.getTopBorder());
-  newTarget = new int[]{(int)random(0-(float)settings.abilityData.getNotOnScreenRange(),gWorldBorderX+(float)settings.abilityData.getNotOnScreenRange()),(int)random((float)settings.abilityData.getTopBorder(),(float)settings.abilityData.getBottomBorder())};
-  print(Arrays.toString(newTarget));
+    newTarget = new int[]{(int)random(0-(float)settings.abilityData.getNotOnScreenRange(),gWorldBorderX+(float)settings.abilityData.getNotOnScreenRange()),(int)random((float)settings.abilityData.getTopBorder(),(float)settings.abilityData.getBottomBorder())};
   }else{
-  newTarget = new int[]{1,1};
+    newTarget = new int[]{1,1};
   }
   //return newTarget[0]!=0&newTarget[1]!=0 ? newTarget : findNewTarget();
   return newTarget;

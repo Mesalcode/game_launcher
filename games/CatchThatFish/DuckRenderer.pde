@@ -4,6 +4,10 @@ class DuckRenderer implements Renderer{
     this.toRender = toRender;
   }
   void execute(){
-    api.imageCentered(duckImage,(int)toRender.position.x,(int)toRender.position.y);
+    pushMatrix();
+    api._translate(toRender.position);
+    scale(toRender.targetPosition.x>toRender.position.x ? -1 : 1, 1);
+    api.imageCentered(duckImage,0,0);
+    popMatrix();
   }
 }

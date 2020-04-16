@@ -6,21 +6,21 @@ class Duck{
    renewTarget();
   }
   void act(){
-    if (reachedTarget())
+    if (!reachedTarget())
       move(targetPosition.x > position.x ? true : false);
     else
       renewTarget();
   }
   MesalAPI.Position randomPosition(){
-    return api. new Position((double)gLandScapeEndY,(double)random(-100,gWorldBorderX+100));
+    return api.new Position((double)random(0,gWorldBorderX),(double)gLandScapeEndY);
   }
   private void renewTarget(){
     targetPosition = randomPosition();
   }
   private boolean reachedTarget(){
-   return api.oneDimensionalDist((int)targetPosition.x,(int)position.x)>15;
+   return api.oneDimensionalDist((int)targetPosition.x,(int)position.x)<30;
   }
   private void move(boolean left){
-   position.changeCoordinatesBy(left ? -10 : 10,0.0);
+   position.changeCoordinatesBy(left ? -1 : 1,0.0);
  }
 }

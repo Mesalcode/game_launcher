@@ -49,7 +49,7 @@ private void initializeGlobalVariables(){
  duckImage = loadImage("babyduck.png");
  gWorldBorderX = backgroundImage.width;
  gWorldBorderY = backgroundImage.height;
- gLandScapeEndY = 800;
+ gLandScapeEndY = 450;
  gTargetReachedRange = 50;
  gDuckCount = 5;
  api = new MesalAPI();
@@ -73,6 +73,8 @@ void draw(){
   r.execute(); 
  for (Fish f : fishs)
    f.act();
+ for (Duck d : ducks)
+   d.act();
  camera.arrange();
  
  //---Tests---
