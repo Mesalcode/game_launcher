@@ -22,19 +22,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 class AbilityData{
-  double strength,speed,size,topBorder,bottomBorder,leftOffsetInPositivePixels,rightOffsetInPositivePixels;
+  double strength,speed,size;
+  boolean newVariant;
+  private double topBorder,bottomBorder,notOnScreenRange;
   AbilityData(double strength, double speed, double size){
    this.strength = strength;
    this.speed = speed/2;
    this.size = size;
+   newVariant = false;
   }
-  AbilityData(double strength, double speed, double size, double topBorder, double bottomBorder, double leftOffsetInPositivePixels, double rightOffsetInPositivePixels){
+  AbilityData(double strength, double speed, double size, double topBorder, double bottomBorder, double notOnScreenRange){
     this.strength = strength;
     this.speed = speed/2;
     this.size = size;
     this.topBorder = topBorder;
     this.bottomBorder = bottomBorder;
-    this.leftOffsetInPositivePixels = leftOffsetInPositivePixels;
-    this.rightOffsetInPositivePixels = rightOffsetInPositivePixels;
+    this.notOnScreenRange = notOnScreenRange;
+    newVariant = true;
+  }
+  float getTopBorder(){
+   return (float)topBorder*gWorldBorderY; 
+  }
+  float getBottomBorder(){
+   return (float)bottomBorder*gWorldBorderY; 
+  }
+  float getNotOnScreenRange(){
+   return (float)notOnScreenRange*gWorldBorderX; 
   }
 }

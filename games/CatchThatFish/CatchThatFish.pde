@@ -27,32 +27,44 @@ MesalAPI api;
 ArrayList<FishSettings> fishSettings;
 ArrayList<Renderer> renderers;
 ArrayList<Fish> fishs;
-int gWorldBorderX,gWorldBorderY;
+ArrayList<Duck> ducks;
+int gWorldBorderX,gWorldBorderY,gLandScapeEndY,gTargetReachedRange,gDuckCount;
 float gSizeMultiplicator;
 PImage backgroundImage;
+PImage duckImage;
 void setup(){
  frameRate(60);
  fullScreen(P3D);
  initializeGlobalVariables();
- initializeRenderers();
+ initializeEntetiesAndRenderers();
  camera = new Camera(new MesalAPI().new Position(displayWidth/2,displayHeight/2));
 }
 private void initializeGlobalVariables(){
  gSizeMultiplicator = 0.15;
  renderers = new ArrayList<Renderer>();
  fishs = new ArrayList<Fish>();
+ ducks = new ArrayList<Duck>();
  fishSettings = loadFishSettings();
  backgroundImage = loadImage("background.png");
+ duckImage = loadImage("babyduck.png");
  gWorldBorderX = backgroundImage.width;
  gWorldBorderY = backgroundImage.height;
+ gLandScapeEndY = 800;
+ gTargetReachedRange = 50;
+ gDuckCount = 5;
  api = new MesalAPI();
 }
-private void initializeRenderers(){
+private void initializeEntetiesAndRenderers(){
  renderers.add(new WaterRenderer(0,600,20000,5000,backgroundImage)); 
  for (FishSettings f : fishSettings){
    Fish toAdd = new Fish(f);
    fishs.add(toAdd);
    renderers.add(new FishRenderer(toAdd));
+ }
+ for (int i = 0; i < gDuckCount;i++){
+  Duck toAdd = new Duck();
+  ducks.add(toAdd);
+  renderers.add(new DuckRenderer(toAdd));
  }
 }
 void draw(){
@@ -60,7 +72,7 @@ void draw(){
  for (Renderer r : renderers)
   r.execute(); 
  for (Fish f : fishs)
-   f.move();
+   f.act();
  camera.arrange();
  
  //---Tests---
@@ -81,7 +93,11 @@ private ArrayList<FishSettings> loadFishSettings(){
   for (int i = 0; i < abilities.length;i++){
      String[] lexiconSplit = lexicons[i].split(",");
      String[] abilitiesSplit = abilities[i].split(",");
-     settings.add(new FishSettings(loadImage(renderData[i]),new LexiconArticle(lexiconSplit[0],lexiconSplit[1],lexiconSplit[2]),new AbilityData(Double.parseDouble(abilitiesSplit[0]),Double.parseDouble(abilitiesSplit[2]),Double.parseDouble(abilitiesSplit[1]))));
+     if (abilitiesSplit.length==3)
+       settings.add(new FishSettings(loadImage(renderData[i]),new LexiconArticle(lexiconSplit[0],lexiconSplit[1],lexiconSplit[2]),new AbilityData(Double.parseDouble(abilitiesSplit[0]),Double.parseDouble(abilitiesSplit[2]),Double.parseDouble(abilitiesSplit[1]))));
+     else
+      settings.add(new FishSettings(loadImage(renderData[i]),new LexiconArticle(lexiconSplit[0],lexiconSplit[1],lexiconSplit[2]),new AbilityData(Double.parseDouble(abilitiesSplit[0]),Double.parseDouble(abilitiesSplit[2]),Double.parseDouble(abilitiesSplit[1]),Double.parseDouble(abilitiesSplit[3]),Double.parseDouble(abilitiesSplit[4]),Double.parseDouble(abilitiesSplit[5]))));
+     
   }
   return settings;
 }
