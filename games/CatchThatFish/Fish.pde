@@ -27,9 +27,14 @@ class Fish{
  MesalAPI.Position targetPosition;
  FishOrientation orientation;
  FishSettings settings;
+ float targetMinX,targetMaxX,targetMinY,targetMaxY;
  Fish(FishSettings settings){
    this.settings = settings;
    position = new MesalAPI().new Position((int)random(0-(float)settings.abilityData.getNotOnScreenRange(),gWorldBorderX+(float)settings.abilityData.getNotOnScreenRange()),(int)random((float)settings.abilityData.getTopBorder(),(float)settings.abilityData.getBottomBorder()));
+   targetMinX = 0-(float)settings.abilityData.getNotOnScreenRange();
+   targetMaxX = gWorldBorderX+(float)settings.abilityData.getNotOnScreenRange();
+   targetMinY = (float)settings.abilityData.getTopBorder();
+   targetMaxY = (float)settings.abilityData.getBottomBorder();
  }
  private void findTarget(){
    targetPosition = new MesalAPI().new Position(findNewTarget()[0],findNewTarget()[1]);
@@ -51,14 +56,8 @@ class Fish{
     findTarget();
   }
  }
- private int createTargetX(){
-   return (int)random(0-(float)settings.abilityData.getNotOnScreenRange(),gWorldBorderX+(float)settings.abilityData.getNotOnScreenRange());
- }
- private int createTargetY(){
-   return (int)random((float)settings.abilityData.getTopBorder(),(float)settings.abilityData.getBottomBorder());
- }
  private int[] createTarget(){
-  return new int[]{createTargetX(),createTargetY()};
+  return new int[]{(int)random(targetMinX,targetMaxX),(int)random(targetMinY,targetMaxY)};
  }
  private boolean validateTarget(int[] newTarget){
    return api.oneDimensionalDist(newTarget[0],(int)position.x)<gWorldBorderX*gMaxTargetDistanceInDisplayRelativeSize;
