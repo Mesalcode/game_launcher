@@ -4,6 +4,6 @@ class PlayerRenderer implements Renderer{
     this.toRender = toRender;
   }
   void execute(){
-   api.imageCentered(boatImage,(int)toRender.position.x,(int)toRender.position.y); 
+   api.imageCentered(playerImage,(int)toRender.position.x,(int)toRender.position.y); 
   }
 }

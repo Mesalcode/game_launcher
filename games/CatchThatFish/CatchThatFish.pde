@@ -32,7 +32,7 @@ int gWorldBorderX,gWorldBorderY,gLandScapeEndY,gTargetReachedRange,gDuckCount,gM
 float gSizeMultiplicator;
 PImage backgroundImage;
 PImage duckImage;
-PImage boatImage;
+PImage playerImage;
 void setup(){
  frameRate(60);
  fullScreen(P3D);
@@ -48,8 +48,8 @@ private void initializeGlobalVariables(){
  fishSettings = loadFishSettings();
  backgroundImage = loadImage("background.png");
  duckImage = loadImage("babyduck.png");
- boatImage = loadImage("boat.png");
- boatImage.resize(boatImage.width/5,boatImage.height/5);
+ playerImage = loadImage("player.png");
+ playerImage.resize(playerImage.width/5,playerImage.height/5);
  gWorldBorderX = backgroundImage.width;
  gWorldBorderY = backgroundImage.height;
  gLandScapeEndY = 450;
