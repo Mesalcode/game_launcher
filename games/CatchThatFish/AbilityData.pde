@@ -23,14 +23,7 @@ SOFTWARE.
 */
 class AbilityData{
   double strength,speed,size;
-  boolean newVariant;
   private double topBorder,bottomBorder,notOnScreenRange;
-  AbilityData(double strength, double speed, double size){
-   this.strength = strength;
-   this.speed = speed/2;
-   this.size = size;
-   newVariant = false;
-  }
   AbilityData(double strength, double speed, double size, double topBorder, double bottomBorder, double notOnScreenRange){
     this.strength = strength;
     this.speed = speed/2;
@@ -38,7 +31,6 @@ class AbilityData{
     this.topBorder = topBorder;
     this.bottomBorder = bottomBorder;
     this.notOnScreenRange = notOnScreenRange;
-    newVariant = true;
   }
   float getTopBorder(){
    return (float)topBorder*gWorldBorderY; 
@@ -47,6 +39,6 @@ class AbilityData{
    return (float)bottomBorder*gWorldBorderY; 
   }
   float getNotOnScreenRange(){
-   return (float)notOnScreenRange*gWorldBorderX; 
+   return (float)notOnScreenRange*5*gWorldBorderX; 
   }
 }

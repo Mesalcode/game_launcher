@@ -21,17 +21,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-WaterRenderer waterRenderer;
 Camera camera;
 MesalAPI api;
 ArrayList<FishSettings> fishSettings;
 ArrayList<Renderer> renderers;
 ArrayList<Fish> fishs;
 ArrayList<Duck> ducks;
-int gWorldBorderX,gWorldBorderY,gLandScapeEndY,gTargetReachedRange,gDuckCount;
+Player player;
+int gWorldBorderX,gWorldBorderY,gLandScapeEndY,gTargetReachedRange,gDuckCount,gMaxTargetDistanceInDisplayRelativeSize;
 float gSizeMultiplicator;
 PImage backgroundImage;
 PImage duckImage;
+PImage boatImage;
 void setup(){
  frameRate(60);
  fullScreen(P3D);
@@ -47,25 +48,32 @@ private void initializeGlobalVariables(){
  fishSettings = loadFishSettings();
  backgroundImage = loadImage("background.png");
  duckImage = loadImage("babyduck.png");
+ boatImage = loadImage("boat.png");
+ boatImage.resize(boatImage.width/5,boatImage.height/5);
  gWorldBorderX = backgroundImage.width;
  gWorldBorderY = backgroundImage.height;
  gLandScapeEndY = 450;
  gTargetReachedRange = 50;
  gDuckCount = 5;
+ gMaxTargetDistanceInDisplayRelativeSize = 2;
  api = new MesalAPI();
 }
 private void initializeEntetiesAndRenderers(){
  renderers.add(new WaterRenderer(0,600,20000,5000,backgroundImage)); 
  for (FishSettings f : fishSettings){
+   for (int i = 0; i < 8.314299*Math.pow(f.abilityData.size,-0.9812073);i++){
    Fish toAdd = new Fish(f);
    fishs.add(toAdd);
    renderers.add(new FishRenderer(toAdd));
+   }
  }
  for (int i = 0; i < gDuckCount;i++){
   Duck toAdd = new Duck();
   ducks.add(toAdd);
   renderers.add(new DuckRenderer(toAdd));
  }
+ player = new Player();
+ renderers.add(new PlayerRenderer(player));
 }
 void draw(){
  background(255);
@@ -95,10 +103,7 @@ private ArrayList<FishSettings> loadFishSettings(){
   for (int i = 0; i < abilities.length;i++){
      String[] lexiconSplit = lexicons[i].split(",");
      String[] abilitiesSplit = abilities[i].split(",");
-     if (abilitiesSplit.length==3)
-       settings.add(new FishSettings(loadImage(renderData[i]),new LexiconArticle(lexiconSplit[0],lexiconSplit[1],lexiconSplit[2]),new AbilityData(Double.parseDouble(abilitiesSplit[0]),Double.parseDouble(abilitiesSplit[2]),Double.parseDouble(abilitiesSplit[1]))));
-     else
-      settings.add(new FishSettings(loadImage(renderData[i]),new LexiconArticle(lexiconSplit[0],lexiconSplit[1],lexiconSplit[2]),new AbilityData(Double.parseDouble(abilitiesSplit[0]),Double.parseDouble(abilitiesSplit[2]),Double.parseDouble(abilitiesSplit[1]),Double.parseDouble(abilitiesSplit[3]),Double.parseDouble(abilitiesSplit[4]),Double.parseDouble(abilitiesSplit[5]))));
+     settings.add(new FishSettings(loadImage(renderData[i]),new LexiconArticle(lexiconSplit[0],lexiconSplit[1],lexiconSplit[2]),new AbilityData(Double.parseDouble(abilitiesSplit[0]),Double.parseDouble(abilitiesSplit[2]),Double.parseDouble(abilitiesSplit[1]),Double.parseDouble(abilitiesSplit[3]),Double.parseDouble(abilitiesSplit[4]),Double.parseDouble(abilitiesSplit[5]))));
      
   }
   return settings;

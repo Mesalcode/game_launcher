@@ -29,7 +29,7 @@ class Fish{
  FishSettings settings;
  Fish(FishSettings settings){
    this.settings = settings;
-   position = new MesalAPI().new Position((int)random(0-(float)settings.abilityData.notOnScreenRange,gWorldBorderX+(float)settings.abilityData.notOnScreenRange),(int)random((float)settings.abilityData.getTopBorder(),(float)settings.abilityData.getBottomBorder()));
+   position = new MesalAPI().new Position((int)random(0-(float)settings.abilityData.getNotOnScreenRange(),gWorldBorderX+(float)settings.abilityData.getNotOnScreenRange()),(int)random((float)settings.abilityData.getTopBorder(),(float)settings.abilityData.getBottomBorder()));
  }
  private void findTarget(){
    targetPosition = new MesalAPI().new Position(findNewTarget()[0],findNewTarget()[1]);
@@ -51,15 +51,21 @@ class Fish{
     findTarget();
   }
  }
+ private int createTargetX(){
+   return (int)random(0-(float)settings.abilityData.getNotOnScreenRange(),gWorldBorderX+(float)settings.abilityData.getNotOnScreenRange());
+ }
+ private int createTargetY(){
+   return (int)random((float)settings.abilityData.getTopBorder(),(float)settings.abilityData.getBottomBorder());
+ }
+ private int[] createTarget(){
+  return new int[]{createTargetX(),createTargetY()};
+ }
+ private boolean validateTarget(int[] newTarget){
+   return api.oneDimensionalDist(newTarget[0],(int)position.x)<gWorldBorderX*gMaxTargetDistanceInDisplayRelativeSize;
+ }
  private int[] findNewTarget(){
-  int[] newTarget;
-  if (settings.abilityData.newVariant){
-    newTarget = new int[]{(int)random(0-(float)settings.abilityData.getNotOnScreenRange(),gWorldBorderX+(float)settings.abilityData.getNotOnScreenRange()),(int)random((float)settings.abilityData.getTopBorder(),(float)settings.abilityData.getBottomBorder())};
-  }else{
-    newTarget = new int[]{1,1};
-  }
-  //return newTarget[0]!=0&newTarget[1]!=0 ? newTarget : findNewTarget();
-  return newTarget;
+  int[] newTarget = createTarget();
+  return validateTarget(newTarget) ? newTarget : findNewTarget();
  }
  private void move(boolean down, boolean up, boolean left, boolean right){;
    position.changeCoordinatesBy((double)(left ? -settings.abilityData.speed : (right ? settings.abilityData.speed : 0)), (up ? -settings.abilityData.speed : (down ? settings.abilityData.speed : 0)));
