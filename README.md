@@ -1,7 +1,7 @@
 # Game launcher - WP2, 8th grade
 ### General
 * able to launch **self programmed online/offline games and simulations**
-* can handle **third party programs (games)** (addable by user and preinstalled)
+* can handle **third party programs/games** (addable by user and preinstalled)
 ### Application list
 #### Games
 * Atari Tennis (retro game, [see wikipedia article](https://en.wikipedia.org/wiki/Pong)) 
