@@ -28,8 +28,8 @@ ArrayList<Renderer> renderers;
 ArrayList<Fish> fishs;
 ArrayList<Duck> ducks;
 Player player;
-int gWorldBorderX,gWorldBorderY,gLandScapeEndY,gTargetReachedRange,gDuckCount,gMaxTargetDistanceInDisplayRelativeSize;
-float gSizeMultiplicator;
+int gWorldBorderX,gWorldBorderY,gLandScapeEndY,gTargetReachedRange,gDuckCount,gMaxTargetDistanceInDisplayRelativeSize,gBoatOffset,gDuckOffset;
+float gSizeMultiplicator,gBoatSizeMultiplicator;
 PImage backgroundImage;
 PImage duckImage;
 PImage playerImage;
@@ -49,16 +49,20 @@ private void initializeGlobalVariables(){
  backgroundImage = loadImage("background.png");
  duckImage = loadImage("babyduck.png");
  playerImage = loadImage("player.png");
- playerImage.resize(playerImage.width/5,playerImage.height/5);
+ gBoatSizeMultiplicator = 0.7;
+ playerImage.resize((int)(playerImage.width*gBoatSizeMultiplicator),(int)(playerImage.height*gBoatSizeMultiplicator));
  gWorldBorderX = backgroundImage.width;
  gWorldBorderY = backgroundImage.height;
  gLandScapeEndY = 450;
  gTargetReachedRange = 50;
- gDuckCount = 5;
+ gBoatOffset = -104;
+ gDuckOffset = 20;
+ gDuckCount = 9;
  gMaxTargetDistanceInDisplayRelativeSize = 2;
  api = new MesalAPI();
 }
 private void initializeEntetiesAndRenderers(){
+ 
  renderers.add(new WaterRenderer(0,600,20000,5000,backgroundImage)); 
  for (FishSettings f : fishSettings){
    for (int i = 0; i < 8.314299*Math.pow(f.abilityData.size,-0.9812073);i++){
@@ -67,13 +71,13 @@ private void initializeEntetiesAndRenderers(){
    renderers.add(new FishRenderer(toAdd));
    }
  }
- for (int i = 0; i < gDuckCount;i++){
-  Duck toAdd = new Duck();
-  ducks.add(toAdd);
-  renderers.add(new DuckRenderer(toAdd));
- }
  player = new Player();
  renderers.add(new PlayerRenderer(player));
+  for (int i = 0; i < gDuckCount;i++){
+    Duck toAdd = new Duck();
+    ducks.add(toAdd);
+    renderers.add(new DuckRenderer(toAdd));
+ }
 }
 void draw(){
  background(255);

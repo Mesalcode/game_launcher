@@ -1,6 +1,6 @@
 class Player{
  MesalAPI.Position position;
  Player(){
-   position = api.new Position(gLandScapeEndY,gWorldBorderX/2);
+   position = api.new Position(gWorldBorderX/2,gLandScapeEndY+gBoatOffset);
  }
 }
