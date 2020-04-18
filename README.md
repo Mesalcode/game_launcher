@@ -6,7 +6,7 @@
 #### Games
 * Atari Tennis (retro game, [see wikipedia article](https://en.wikipedia.org/wiki/Pong)) 
 * Pac-Man (retro game, [see wikipedia article](https://en.wikipedia.org/wiki/Pac-Man))
-* CatchThatFish (fishing game, inspired by [Cat goes Fishing](https://store.steampowered.com/app/343780/Cat_Goes_Fishing/)
+* CatchThatFish (fishing game, inspired by [Cat goes Fishing](https://store.steampowered.com/app/343780/Cat_Goes_Fishing/))
 * Cloooowns (bloon pop game)
 #### Software
 * FT2 (drawing tool)
