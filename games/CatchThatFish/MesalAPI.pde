@@ -43,6 +43,7 @@ class MesalAPI{
    return percentageNumber/100; 
   }
   void _line(Position startPosition,Position endPosition){
+   strokeWeight(3);
    line((float)startPosition.x,(float)startPosition.y,(float)endPosition.x,(float)endPosition.y); 
   }
   PImage resizeImagePercentual(PImage toResize,int desiredWidthPercentage, int desiredHeightPercentage){

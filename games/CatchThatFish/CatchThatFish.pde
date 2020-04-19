@@ -64,19 +64,19 @@ private void initializeGlobalVariables(){
 private void initializeEntetiesAndRenderers(){
  
  renderers.add(new WaterRenderer(0,600,20000,5000,backgroundImage)); 
- for (FishSettings f : fishSettings){
-   for (int i = 0; i < 8.314299*Math.pow(f.abilityData.size,-0.9812073);i++){
-   Fish toAdd = new Fish(f);
-   fishs.add(toAdd);
-   renderers.add(new FishRenderer(toAdd));
-   }
- }
  player = new Player();
  renderers.add(new PlayerRenderer(player));
   for (int i = 0; i < gDuckCount;i++){
     Duck toAdd = new Duck();
     ducks.add(toAdd);
     renderers.add(new DuckRenderer(toAdd));
+ }
+ for (FishSettings f : fishSettings){
+   for (int i = 0; i < 8.314299*Math.pow(f.abilityData.size,-0.9812073);i++){
+   Fish toAdd = new Fish(f);
+   fishs.add(toAdd);
+   renderers.add(new FishRenderer(toAdd));
+   }
  }
 }
 void draw(){
