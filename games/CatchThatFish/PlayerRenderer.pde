@@ -4,7 +4,9 @@ class PlayerRenderer implements Renderer{
     this.toRender = toRender;
   }
   void execute(){
-   api.imageCentered(playerImage,(int)toRender.position.x,(int)toRender.position.y); 
-   api.imageCentered(toRender.bait.image,(int)toRender.position.x,(int)toRender.position.y);
+   api.imageCentered(playerImage,toRender.position); 
+   api._line(toRender.restPosition,toRender.positionStringEnd);
+   api.imageCentered(toRender.bait.image,toRender.positionStringEnd);
+   camera.assignCenter(api.new Position(displayWidth/2,toRender.positionStringEnd.y));
   }
 }

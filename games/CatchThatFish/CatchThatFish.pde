@@ -90,6 +90,7 @@ void draw(){
  camera.arrange();
  
  //---Tests---
+ player.lowerString();
  if (keyPressed)
    testMoveAroundFreelyWithArrowKeys(keyCode); 
 }

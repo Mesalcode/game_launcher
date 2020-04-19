@@ -33,6 +33,22 @@ class MesalAPI{
    image(image,positionX,positionY);
    imageMode(CORNER);
   }
+  void imageCentered(PImage image, MesalAPI.Position position){
+   imageCentered(image,(int)position.x,(int)position.y);
+  }
+  float percent(float decimalNumber){
+   return decimalNumber*100; 
+  }
+  float decimal(float percentageNumber){
+   return percentageNumber/100; 
+  }
+  void _line(Position startPosition,Position endPosition){
+   line((float)startPosition.x,(float)startPosition.y,(float)endPosition.x,(float)endPosition.y); 
+  }
+  PImage resizeImagePercentual(PImage toResize,int desiredWidthPercentage, int desiredHeightPercentage){
+   toResize.resize((int)(decimal(desiredWidthPercentage)*toResize.width),(int)(decimal(desiredHeightPercentage)*toResize.height));
+   return toResize;
+  }
   private int oneDimensionalDist(int pos1, int pos2){
     return pos2-pos1 >= 0 ? pos2-pos1 : -(pos2-pos1);
    }
@@ -46,12 +62,11 @@ class MesalAPI{
      this.x += byX;
      this.y += byY;
    }
-   void resetCoordinates(){
-    x = 0;
-    y = 0;
-   }
    boolean isResetted(){
     return x==0&y==0; 
+   }
+   Position clone(){
+    return new Position(x,y); 
    }
   }
 }
