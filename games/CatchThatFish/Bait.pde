@@ -9,15 +9,15 @@ class Bait{
  }
  Bait(){}
  Bait noBait(){
-  return new Bait(new PImage(),0,10,2); 
+  return new Bait(new PImage(),0,1,2); 
  }
  Bait smallBait(){
-  return new Bait(api.resizeImagePercentual(loadImage("small_bait.png"),32,32),10,20,4);
+  return new Bait(api.resizeImagePercentual(loadImage("small_bait.png"),32,32),1,2,4);
  }
  Bait mediumBait(){
-  return new Bait(api.resizeImagePercentual(loadImage("medium_bait.png"),42,42),20,30,6);
+  return new Bait(api.resizeImagePercentual(loadImage("medium_bait.png"),42,42),2,4,6);
  }
  Bait bigBait(){
-  return new Bait(api.resizeImagePercentual(loadImage("big_bait.png"),65,65),40,50,8);
+  return new Bait(api.resizeImagePercentual(loadImage("big_bait.png"),65,65),4,20,8);
  }
 }

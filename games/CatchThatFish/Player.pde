@@ -8,7 +8,7 @@ class Player{
    position = api.new Position(gWorldBorderX/2,gLandScapeEndY+gBoatOffset);
    //bait = new Bait().noBait();
    //bait = new Bait().smallBait();
-   bait = new Bait().mediumBait();
+   bait = new Bait().smallBait();
    rod = new Rod().shallowRod();
    restPosition = api.new Position(position.x-playerImage.width/2,position.y-playerImage.height/2);
    positionStringEnd = restPosition.clone();
