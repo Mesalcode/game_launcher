@@ -32,7 +32,8 @@ class Camera{
   void assignCenter(MesalAPI.Position newCenter){
     position = newCenter.y+displayHeight/2<=gWorldBorderY&newCenter.y-displayHeight/2>=0 ? newCenter.clone() : position;
   }
+  
   void moveY(int by){
-    position.changeCoordinatesBy(0.0,position.y+displayHeight/2+by<=gWorldBorderY&position.y-displayHeight/2+by>=0 ? by : 0);
+    position.changeCoordinatesBy(position.y+displayHeight/2+by<=gWorldBorderY&position.y-displayWidth/2+by>=0 ? by : 0, 0.0);
   }
 }

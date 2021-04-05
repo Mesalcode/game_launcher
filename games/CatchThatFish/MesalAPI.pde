@@ -53,6 +53,9 @@ class MesalAPI{
   private int oneDimensionalDist(int pos1, int pos2){
     return pos2-pos1 >= 0 ? pos2-pos1 : -(pos2-pos1);
    }
+   
+ 
+   
   class Position{
    double x,y;
    Position(double x, double y){

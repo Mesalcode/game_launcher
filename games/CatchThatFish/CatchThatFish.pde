@@ -28,7 +28,7 @@ ArrayList<Renderer> renderers;
 ArrayList<Fish> fishs;
 ArrayList<Duck> ducks;
 Player player;
-int gWorldBorderX,gWorldBorderY,gLandScapeEndY,gTargetReachedRange,gDuckCount,gMaxTargetDistanceInDisplayRelativeSize,gBoatOffset,gDuckOffset;
+int gWorldBorderX,gWorldBorderY,gLandScapeEndY,gTargetReachedRange,gDuckCount,gMaxTargetDistanceInDisplayRelativeSize,gBoatOffset,gDuckOffset,gBaitDetectionRadius,gMinBaitInterval;
 float gSizeMultiplicator,gBoatSizeMultiplicator;
 PImage backgroundImage;
 PImage duckImage;
@@ -59,6 +59,8 @@ private void initializeGlobalVariables(){
  gDuckOffset = 20;
  gDuckCount = 9;
  gMaxTargetDistanceInDisplayRelativeSize = 2;
+ gBaitDetectionRadius = 500;
+ gMinBaitInterval = 60 * 5;
  api = new MesalAPI();
 }
 private void initializeEntetiesAndRenderers(){
@@ -72,7 +74,8 @@ private void initializeEntetiesAndRenderers(){
     renderers.add(new DuckRenderer(toAdd));
  }
  for (FishSettings f : fishSettings){
-   for (int i = 0; i < 8.314299*Math.pow(f.abilityData.size,-0.9812073);i++){
+   //for (int i = 0; i < 8.314299*Math.pow(f.abilityData.size,-0.9812073);i++){
+   for (int i = 0; i < 2*Math.pow(f.abilityData.size,-0.9812073);i++){
    Fish toAdd = new Fish(f);
    fishs.add(toAdd);
    renderers.add(new FishRenderer(toAdd));
@@ -89,11 +92,35 @@ void draw(){
    d.act();
  camera.arrange();
  
+ player.act();
+ 
+//println(player.debugIsTargeted());
  //---Tests---
- player.lowerString();
- if (keyPressed)
-   testMoveAroundFreelyWithArrowKeys(keyCode); 
+ //player.lowerString();
+ //if (keyPressed)
+  // testMoveAroundFreelyWithArrowKeys(keyCode); 
+  if (keyPressed){
+   if (keyCode == LEFT){
+     player.position.x -= 1;
+     player.positionStringEnd.x -= 1;
+     //camera.moveX(-1);
+   }else if (keyCode == RIGHT){
+     player.position.x += 1;
+     player.positionStringEnd.x += 1;
+    // camera.moveX(1);
+   } 
+  }
 }
+
+void keyPressed(){
+  player.reactToButtonPress(); 
+}
+
+void keyReleased(){
+ player.reactToButtonRelease(); 
+}
+
+
 private String[] loadMetaData(String metaName){
   String[] metaData = loadStrings("META/"+metaName+".meta");
   for (int i = 0; i < metaData.length;i++)

@@ -28,9 +28,41 @@ class FishRenderer implements Renderer{
   void execute(){
     pushMatrix();
     api._translate(toRender.position);
-    Command adjustGraphicsToOrientation = toRender.orientation==FishOrientation.LEFT||toRender.orientation==FishOrientation.LEFT_DOWN||toRender.orientation==FishOrientation.LEFT_UP ? () -> scale(-1,1) : (toRender.orientation==FishOrientation.UP ? () -> rotate(radians(-90)) : (toRender.orientation==FishOrientation.DOWN ? () -> rotate(radians(90)) : () -> {}));
-    adjustGraphicsToOrientation.execute();
+    if (!toRender.attachedToBait){
+      Command adjustGraphicsToOrientation = toRender.orientation==FishOrientation.LEFT||toRender.orientation==FishOrientation.LEFT_DOWN||toRender.orientation==FishOrientation.LEFT_UP ? () -> scale(-1,1) : (toRender.orientation==FishOrientation.UP ? () -> rotate(radians(-90)) : (toRender.orientation==FishOrientation.DOWN ? () -> rotate(radians(90)) : () -> {}));
+      adjustGraphicsToOrientation.execute();
+    }else {
+      rotate(radians(-90));
+    }
     api.imageCentered(toRender.settings.image,0,0);
+    
+    if (DEBUG_DRAW_DETECTION_INDICATORS){
+      noFill();
+      
+      if (toRender.followingBait){
+       stroke(255, 0, 0); 
+      }else if (toRender.attachedToBait){
+       stroke(0, 0, 255);
+      }else if (toRender.shouldStartFollowingBait()){
+       stroke(255, 255, 0); 
+      }else if (toRender.isBaitNearby()){
+       stroke(0, 255, 0); 
+      }else {
+       stroke(0);
+      }
+      
+      circle(0, 0, toRender.settings.image.width);
+    }
+    
+    popMatrix();
+    pushMatrix();
+    if (DEBUG_SHOW_STRENGTH_INDICATORS){
+      api._translate(toRender.position);
+      text("Stärke: " + toRender.settings.abilityData.strength, toRender.settings.image.width + 20, 0);
+    }
+    if (DEBUG_SHOW_OBJECT_SPECIFIC_DETAILS){
+      text(toRender.debugInfo, toRender.settings.image.width + 20, 10);
+    }
     popMatrix();
   }
 }

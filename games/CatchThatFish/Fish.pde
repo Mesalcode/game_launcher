@@ -28,6 +28,11 @@ class Fish{
  FishOrientation orientation;
  FishSettings settings;
  float targetMinX,targetMaxX,targetMinY,targetMaxY;
+ boolean followingBait, attachedToBait;
+ int detectionRadius;
+ String debugInfo;
+ boolean ignoresBait;
+ 
  Fish(FishSettings settings){
    this.settings = settings;
    position = new MesalAPI().new Position((int)random(0-(float)settings.abilityData.getNotOnScreenRange(),gWorldBorderX+(float)settings.abilityData.getNotOnScreenRange()),(int)random((float)settings.abilityData.getTopBorder(),(float)settings.abilityData.getBottomBorder()));
@@ -35,20 +40,109 @@ class Fish{
    targetMaxX = gWorldBorderX+(float)settings.abilityData.getNotOnScreenRange();
    targetMinY = (float)settings.abilityData.getTopBorder();
    targetMaxY = (float)settings.abilityData.getBottomBorder();
+   followingBait = false;
+   attachedToBait = false;
+   detectionRadius = gBaitDetectionRadius;
+   debugInfo = "";
+   ignoresBait = false;
  }
+ 
+boolean isBaitNearby(){
+  return (float) api.oneDimensionalDist((int) position.x, (int) player.positionStringEnd.x) < (float) detectionRadius && 
+  (float) api.oneDimensionalDist((int) position.y, (int) player.positionStringEnd.y) < (float) detectionRadius; 
+ }
+ 
+ private boolean isInterestedInBait(){
+   return settings.abilityData.strength <= player.bait.maxStrength && settings.abilityData.strength >= player.bait.minStrength;
+ }
+ 
+ private boolean shouldStartFollowingBait(){
+  return isBaitNearby() && isInterestedInBait() && !ignoresBait && !player.state.isStringBeingAutoLowered && !player.state.isStringBeingRecovered;
+ }
+
  private void findTarget(){
    targetPosition = new MesalAPI().new Position(findNewTarget()[0],findNewTarget()[1]);
  }
- private FishOrientation selectOrientation(){
-   return (api.oneDimensionalDist((int)position.x,(int)targetPosition.x)>=10 ? (targetPosition.x<position.x&targetPosition.y<position.y ? FishOrientation.LEFT_UP : (targetPosition.x<position.x&targetPosition.y>position.y ? orientation = FishOrientation.LEFT_DOWN : (targetPosition.x<position.x&targetPosition.y==position.y ? FishOrientation.LEFT : (targetPosition.x>position.x&targetPosition.y<position.y ? FishOrientation.RIGHT_UP : (targetPosition.x>position.x&targetPosition.y>position.y ? FishOrientation.RIGHT_DOWN: (targetPosition.x>position.x&targetPosition.y==position.y ? FishOrientation.RIGHT : FishOrientation.STANDBY)))))) : ((api.oneDimensionalDist((int)position.y,(int)targetPosition.y)>=10) ? (targetPosition.y>position.y ? FishOrientation.DOWN : FishOrientation.UP) : FishOrientation.STANDBY));
+ private FishOrientation selectOrientation(MesalAPI.Position tPosition){
+   return (api.oneDimensionalDist((int)position.x,(int)tPosition.x)>=10 ? (tPosition.x<position.x&tPosition.y<position.y ? FishOrientation.LEFT_UP : (tPosition.x<position.x&tPosition.y>position.y ? orientation = FishOrientation.LEFT_DOWN : (tPosition.x<position.x&tPosition.y==position.y ? FishOrientation.LEFT : (tPosition.x>position.x&tPosition.y<position.y ? FishOrientation.RIGHT_UP : (tPosition.x>position.x&tPosition.y>position.y ? FishOrientation.RIGHT_DOWN: (tPosition.x>position.x&tPosition.y==position.y ? FishOrientation.RIGHT : FishOrientation.STANDBY)))))) : ((api.oneDimensionalDist((int)position.y,(int)tPosition.y)>=10) ? (tPosition.y>position.y ? FishOrientation.DOWN : FishOrientation.UP) : FishOrientation.STANDBY));
  }
  private void updateOrientationAndPosition(){
-   orientation = changePositionByOrientation(selectOrientation());
+   orientation = changePositionByOrientation(selectOrientation(targetPosition));
  }
  private boolean hasReachedTarget(){
    return dist((float)position.x,(float)position.y,(float)targetPosition.x,(float)targetPosition.y)<gTargetReachedRange;
  }
+ 
+ private boolean hasReachedBait(){
+   return dist((float)position.x,(float)position.y,(float)player.positionStringEnd.x,(float)player.positionStringEnd.y)<gTargetReachedRange;
+ }
+ 
+private void followBait(){
+  orientation = changePositionByOrientation(selectOrientation(player.positionStringEnd));
+}
+
+private boolean willDetach(){
+ float rb1 = 600 * 10 * 1; //*1 is temporary to make it less frustrating to test
+ float rv1 = random(rb1);
+ float rb2 = (float) player.bait.maxStrength * 0.75;
+ rb2 = rb2 > settings.abilityData.strength ? (float) settings.abilityData.strength * 0.75 : rb2; //Optional, may need to be removed
+ float rv2 = 10 + 4 * (float) (settings.abilityData.strength - rb2); //The higher the strength, the higher the chance of flight - the higher the bait strength, the lower the chance of flight
+ debugInfo = "Flucht-Wahrscheinlichkeit (pro Sekunde): " + ((rv2 / rb1) * 100 * 60) + "%";  
+ 
+ 
+ return rv1 <= rv2;
+}
+ 
  void act(){
+   //Temporary
+   if (player.state.isStringInTopPosition && attachedToBait){
+     attachedToBait = false;
+     act();
+     return;
+   }
+   //
+  if (attachedToBait){
+   if (willDetach()){
+    debugInfo = "";
+    //ignoresBait = true; 
+    player.state.notifyRecoveryStarted();
+    attachedToBait = false;
+    followingBait = false;
+    Command nextAction = (hasReachedTarget() ? (() -> findTarget()) : (() -> updateOrientationAndPosition()));
+    nextAction.execute();
+   }else {
+     position.x = player.positionStringEnd.x; 
+     position.y = player.positionStringEnd.y + settings.image.height * 0.75f; 
+   }
+   return;
+  }
+  
+  if (followingBait){
+    if (!isBaitNearby()){ 
+     player.untarget();
+     followingBait = false;
+     act();
+     return; 
+    }
+    
+    if (hasReachedBait()){
+      followingBait = false;
+      attachedToBait = true;
+      act();
+      return;
+    }
+    followBait();
+    return;
+  }
+  
+  if (shouldStartFollowingBait()){
+   if (player.tryToTarget()){
+    followingBait = true; 
+    act();
+    return;
+   }
+  }
+   
   try {
     Command nextAction = (hasReachedTarget() ? (() -> findTarget()) : (() -> updateOrientationAndPosition()));
     nextAction.execute();
@@ -56,6 +150,7 @@ class Fish{
     findTarget();
   }
  }
+ 
  private int[] createTarget(){
   return new int[]{(int)random(targetMinX,targetMaxX),(int)random(targetMinY,targetMaxY)};
  }
