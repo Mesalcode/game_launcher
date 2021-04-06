@@ -29,12 +29,13 @@ class Player{
  MesalAPI.Position restPosition;
  MesalAPI.Position positionStringEnd;
  private boolean isTargeted = false;
+ private boolean isAttached = false;
  
  PlayerState state;
  
  Player(){
    position = api.new Position(gWorldBorderX/2,gLandScapeEndY+gBoatOffset);
-   bait = new Bait().bigBait();
+   bait = new Bait().mediumBait();
    rod = new Rod().bestRod();
    restPosition = api.new Position(position.x-playerImage.width/2,position.y-playerImage.height/2);
    positionStringEnd = restPosition.clone();
@@ -51,6 +52,18 @@ class Player{
  
  Bait getBait(){
   return bait; 
+ }
+ 
+ void attach(){
+   isAttached = true;
+ }
+ 
+ void unattach(){
+   isAttached = false;
+ }
+ 
+ boolean isFishAttached(){
+  return isAttached; 
  }
  
  boolean tryToTarget(){

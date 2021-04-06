@@ -114,6 +114,7 @@ private boolean willDetach(){
    if (player.state.isStringInTopPosition && attachedToBait){
      stashed = true;  //Stashed is read by the renderer so that it can remove itself from the list
      fishs.remove(this); //the fish removes itself from the global action list
+     player.unattach();
      
      Fish replacementFish = new Fish(settings); //Create a new fish with identical settings somewhere on the map
      fishs.add(replacementFish); //add it to the global action list
@@ -155,6 +156,7 @@ private boolean willDetach(){
     if (hasReachedBait()){
       followingBait = false;
       attachedToBait = true;
+      player.attach(); //notify the player
       act();
       return;
     }

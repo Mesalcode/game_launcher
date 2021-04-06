@@ -55,6 +55,7 @@ class PlayerState{
   isStringStatic = false;
   isStringInTopPosition = true;
   hasFishEscapedMidTow = false;
+  player.unattach(); //Reenable visibility of bait
  }
  
  void notifyStringDescentStarted(){
