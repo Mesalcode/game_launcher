@@ -26,6 +26,10 @@ class FishRenderer implements Renderer{
   FishRenderer(Fish toRender){  this.toRender = toRender;  }
   @Override
   void execute(){
+    if (toRender.stashed){
+     renderers.remove(this);
+    }
+    
     pushMatrix();
     api._translate(toRender.position);
     if (!toRender.attachedToBait){

@@ -28,7 +28,7 @@ class Fish{
  FishOrientation orientation;
  FishSettings settings;
  float targetMinX,targetMaxX,targetMinY,targetMaxY;
- boolean followingBait, attachedToBait;
+ boolean followingBait, attachedToBait, stashed;
  int detectionRadius;
  String debugInfo;
  boolean ignoresBait;
@@ -52,8 +52,22 @@ boolean isBaitNearby(){
   (float) api.oneDimensionalDist((int) position.y, (int) player.positionStringEnd.y) < (float) detectionRadius; 
  }
  
+ private boolean isHungry(){
+   if (DEBUG_FISH_ARE_ALWAYS_HUNGRY){
+    return true; 
+   }
+   
+   float rb1 = 600 * 30; 
+   float rv1 = random(rb1);
+   float rb2 = (float) player.bait.maxStrength * 0.75;
+   rb2 = rb2 > settings.abilityData.strength ? (float) settings.abilityData.strength * 0.75 : rb2; 
+   float rv2 = 10 + 4 * (float) (settings.abilityData.strength - rb2); 
+   
+   return rv1 <= rv2;
+ }
+ 
  private boolean isInterestedInBait(){
-   return settings.abilityData.strength <= player.bait.maxStrength && settings.abilityData.strength >= player.bait.minStrength;
+   return settings.abilityData.strength <= player.bait.maxStrength && settings.abilityData.strength >= player.bait.minStrength && isHungry();
  }
  
  private boolean shouldStartFollowingBait(){
@@ -82,11 +96,13 @@ private void followBait(){
 }
 
 private boolean willDetach(){
- float rb1 = 600 * 10 * 1; //*1 is temporary to make it less frustrating to test
+ float cv1 = 0.05; //chance base
+ float cv2 = 100 / cv1 / 100;
+ float rb1 = 600 * cv2; //*1 is temporary to make it less frustrating to test
  float rv1 = random(rb1);
- float rb2 = (float) player.bait.maxStrength * 0.75;
+ float rb2 = (float) player.bait.maxStrength * 0.75; //3 times the impact
  rb2 = rb2 > settings.abilityData.strength ? (float) settings.abilityData.strength * 0.75 : rb2; //Optional, may need to be removed
- float rv2 = 10 + 4 * (float) (settings.abilityData.strength - rb2); //The higher the strength, the higher the chance of flight - the higher the bait strength, the lower the chance of flight
+ float rv2 = 10 + 4 * (float) (settings.abilityData.strength - rb2) * 5; //The higher the strength, the higher the chance of flight - the higher the bait strength, the lower the chance of flight
  debugInfo = "Flucht-Wahrscheinlichkeit (pro Sekunde): " + ((rv2 / rb1) * 100 * 60) + "%";  
  
  
@@ -96,8 +112,19 @@ private boolean willDetach(){
  void act(){
    //Temporary
    if (player.state.isStringInTopPosition && attachedToBait){
-     attachedToBait = false;
-     act();
+     stashed = true;  //Stashed is read by the renderer so that it can remove itself from the list
+     fishs.remove(this); //the fish removes itself from the global action list
+     
+     Fish replacementFish = new Fish(settings); //Create a new fish with identical settings somewhere on the map
+     fishs.add(replacementFish); //add it to the global action list
+     
+     FishRenderer replacementRenderer = new FishRenderer(replacementFish); //create a renderer for the replacement  fish
+     renderers.add(replacementRenderer); //add it to the renderer list
+     
+     stash.add(this); //Add self to stash
+     
+     System.gc(); //Clean up
+     
      return;
    }
    //

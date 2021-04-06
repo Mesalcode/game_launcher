@@ -28,6 +28,7 @@ ArrayList<Renderer> renderers;
 ArrayList<Fish> fishs;
 ArrayList<Duck> ducks;
 Player player;
+Stash stash;
 int gWorldBorderX,gWorldBorderY,gLandScapeEndY,gTargetReachedRange,gDuckCount,gMaxTargetDistanceInDisplayRelativeSize,gBoatOffset,gDuckOffset,gBaitDetectionRadius,gMinBaitInterval;
 float gSizeMultiplicator,gBoatSizeMultiplicator;
 PImage backgroundImage;
@@ -65,8 +66,10 @@ private void initializeGlobalVariables(){
 }
 private void initializeEntetiesAndRenderers(){
  
- renderers.add(new WaterRenderer(0,600,20000,5000,backgroundImage)); 
+ renderers.add(new BackgroundRenderer(0, 0, backgroundImage)); 
  player = new Player();
+ stash = new Stash();
+ renderers.add(new StashRenderer(stash));
  renderers.add(new PlayerRenderer(player));
   for (int i = 0; i < gDuckCount;i++){
     Duck toAdd = new Duck();
@@ -84,12 +87,14 @@ private void initializeEntetiesAndRenderers(){
 }
 void draw(){
  background(255);
- for (Renderer r : renderers)
+ 
+ for (Renderer r : (ArrayList<Renderer>) renderers.clone())
   r.execute(); 
- for (Fish f : fishs)
+ for (Fish f : (ArrayList<Fish>) fishs.clone())
    f.act();
- for (Duck d : ducks)
+ for (Duck d : (ArrayList<Duck>) ducks.clone())
    d.act();
+   
  camera.arrange();
  
  player.act();
@@ -99,7 +104,7 @@ void draw(){
  //player.lowerString();
  //if (keyPressed)
   // testMoveAroundFreelyWithArrowKeys(keyCode); 
-  if (keyPressed){
+  /*if (keyPressed){
    if (keyCode == LEFT){
      player.position.x -= 1;
      player.positionStringEnd.x -= 1;
@@ -109,7 +114,7 @@ void draw(){
      player.positionStringEnd.x += 1;
     // camera.moveX(1);
    } 
-  }
+  }*/
 }
 
 void keyPressed(){
